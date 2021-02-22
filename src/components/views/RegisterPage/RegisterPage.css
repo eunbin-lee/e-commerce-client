@@ -1,34 +1,25 @@
-.snsForSignUp button {
+.sns_signup button {
   display: flex;
-  justify-content: space-between;
-  /* width: 320px; */
-  height: 34px;
+  align-items: center;
+  width: 160px;
+  height: 32px;
+  background: url('../../images/bg_sns.png') no-repeat;
   margin-bottom: 0.5rem;
-  border-radius: 3px;
+  padding-left: 42px;
+  border: none;
   letter-spacing: -0.7px;
-  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+  font-size: 0.78rem;
   cursor: pointer;
 }
-.snsForSignUp button:hover {
-  opacity: 0.8;
-}
-.snsForSignUp .kakao {
+.sns_signup .kakao {
   margin-top: 1.5rem;
-  border: none;
-  background-color: #ffe22a;
 }
-.snsForSignUp .naver {
-  border: none;
-  background-color: #03cf5c;
-  color: #fff;
+.sns_signup .naver {
+  background-position-y: -64px;
 }
-.snsForSignUp .google {
-  border: none;
-  background-color: #ea4235;
-  color: #fff;
+.sns_signup .google {
+  background-position-y: -96px;
 }
-.snsForSignUp .facebook {
-  border: none;
-  background-color: #395aa1;
-  color: #fff;
+.sns_signup .facebook {
+  background-position-y: -32px;
 }

@@ -6,6 +6,7 @@ import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import { continents, price } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
+import './LandingPage.css';
 
 const { Meta } = Card;
 
@@ -130,34 +131,86 @@ function LandingPage() {
     getProducts(variables);
   };
 
+  const exampleProducts = [
+    {
+      id: 1,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Product 1',
+      price: '00000￦',
+    },
+    {
+      id: 2,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Product 2',
+      price: '00000￦',
+    },
+    {
+      id: 3,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Product 3',
+      price: '00000￦',
+    },
+    {
+      id: 4,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Product 4',
+      price: '00000￦',
+    },
+  ];
+
   return (
     <div>
-      {/* <ImageSlider /> */}
+      {/* Visual Image 
+      <ImageSlider /> */}
       <div
         style={{
           width: '100%',
-          height: '450px',
+          height: '500px',
           marginTop: '-6px',
           backgroundColor: '#eee',
           textAlign: 'center',
-          verticalAlign: 'middle',
-          lineHeight: '450px',
+          lineHeight: '500px',
         }}
       >
         visual images
       </div>
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
-        <div style={{ textAlign: 'center' }}>
+        {/* Search */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            margin: '1rem auto',
+          }}
+        >
+          <SearchFeature refreshFunction={updateSearchTerms} />
+        </div>
+
+        {/* Recommendation Products */}
+        <div style={{ textAlign: 'center', margin: '2rem 1.5rem 0' }}>
           <h2>
             {' '}
             Recommendation Products <Icon type="like" />{' '}
           </h2>
         </div>
 
-        {/* Filter  */}
+        <ul className="product_list">
+          {exampleProducts.map((product) => (
+            <li key={product.id}>
+              <img src={product.image} />
+              <p>{product.name}</p>
+              <span>{product.price}</span>
+            </li>
+          ))}
+        </ul>
 
-        <Row gutter={[16, 16]}>
+        {/* Filter  */}
+        {/* <Row gutter={[16, 16]}>
           <Col lg={12} xs={24}>
             <CheckBox
               list={continents}
@@ -170,20 +223,9 @@ function LandingPage() {
               handleFilters={(filters) => handleFilters(filters, 'price')}
             />
           </Col>
-        </Row>
+        </Row> */}
 
-        {/* Search */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            margin: '1rem auto',
-          }}
-        >
-          <SearchFeature refreshFunction={updateSearchTerms} />
-        </div>
-
-        {Products.length === 0 ? (
+        {/* {Products.length === 0 ? (
           <div
             style={{
               display: 'flex',
@@ -194,11 +236,11 @@ function LandingPage() {
           >
             <h2>No post yet...</h2>
           </div>
-        ) : (
-          <div>
-            <Row gutter={[16, 16]}>{renderCards}</Row>
-          </div>
-        )}
+        ) : ( */}
+        <div>
+          <Row gutter={[16, 16]}>{renderCards}</Row>
+        </div>
+        {/* )} */}
         <br />
         <br />
 

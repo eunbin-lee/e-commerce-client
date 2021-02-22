@@ -237,11 +237,11 @@ function RegisterPage(props) {
               </Form.Item>
             </Form>
 
-            <div className="snsForSignUp">
-              <button className="kakao">카카오 회원가입</button>
-              <button className="naver">네이버 회원가입</button>
-              <button className="google">구글 회원가입</button>
-              <button className="facebook">페이스북 회원가입</button>
+            <div className="sns_signup">
+              <button className="kakao">카카오 간편가입</button>
+              <button className="naver">네이버 간편가입</button>
+              <button className="google">구글 간편가입</button>
+              <button className="facebook">페이스북 간편가입</button>
             </div>
           </div>
         );

@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+.product_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.product_list li {
+}
+.product_list li img {
+}
+.product_list li p {
+  margin-top: 1rem;
+}
+.product_list li span {
+  margin-top: -0.5rem;
+}

@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
-import { Icon, Col, Card, Row } from 'antd';
-import ImageSlider from '../../utils/ImageSlider';
-import CheckBox from './Sections/CheckBox';
-import RadioBox from './Sections/RadioBox';
-import { continents, price } from './Sections/Datas';
+import { Icon, Card, Tabs, Carousel } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import './LandingPage.css';
-
-const { Meta } = Card;
 
 function LandingPage() {
   const [Products, setProducts] = useState([]);
@@ -16,6 +10,7 @@ function LandingPage() {
   const [Limit, setLimit] = useState(8);
   const [PostSize, setPostSize] = useState();
   const [SearchTerms, setSearchTerms] = useState('');
+  const { TabPane } = Tabs;
 
   const [Filters, setFilters] = useState({
     continents: [],
@@ -46,77 +41,6 @@ function LandingPage() {
     });
   };
 
-  const onLoadMore = () => {
-    let skip = Skip + Limit;
-
-    const variables = {
-      skip: skip,
-      limit: Limit,
-      loadMore: true,
-      filters: Filters,
-      searchTerm: SearchTerms,
-    };
-    getProducts(variables);
-    setSkip(skip);
-  };
-
-  const renderCards = Products.map((product, index) => {
-    return (
-      <Col lg={6} md={8} xs={24}>
-        <Card
-          hoverable={true}
-          cover={
-            <a href={`/product/${product._id}`}>
-              {' '}
-              <ImageSlider images={product.images} />
-            </a>
-          }
-        >
-          <Meta title={product.title} description={`$${product.price}`} />
-        </Card>
-      </Col>
-    );
-  });
-
-  const showFilteredResults = (filters) => {
-    const variables = {
-      skip: 0,
-      limit: Limit,
-      filters: filters,
-    };
-    getProducts(variables);
-    setSkip(0);
-  };
-
-  const handlePrice = (value) => {
-    const data = price;
-    let array = [];
-
-    for (let key in data) {
-      if (data[key]._id === parseInt(value, 10)) {
-        array = data[key].array;
-      }
-    }
-    console.log('array', array);
-    return array;
-  };
-
-  const handleFilters = (filters, category) => {
-    const newFilters = { ...Filters };
-
-    newFilters[category] = filters;
-
-    if (category === 'price') {
-      let priceValues = handlePrice(filters);
-      newFilters[category] = priceValues;
-    }
-
-    console.log(newFilters);
-
-    showFilteredResults(newFilters);
-    setFilters(newFilters);
-  };
-
   const updateSearchTerms = (newSearchTerm) => {
     const variables = {
       skip: 0,
@@ -129,6 +53,14 @@ function LandingPage() {
     setSearchTerms(newSearchTerm);
 
     getProducts(variables);
+  };
+
+  const visualSlider = {
+    height: '500px',
+    color: '#fff',
+    lineHeight: '500px',
+    textAlign: 'center',
+    background: '#495057',
   };
 
   const exampleProducts = [
@@ -162,22 +94,71 @@ function LandingPage() {
     },
   ];
 
+  const exampleEvents = [
+    {
+      id: 1,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Event 1',
+      text: "Don't miss it",
+    },
+    {
+      id: 2,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Event 2',
+      text: "Don't miss it",
+    },
+    {
+      id: 3,
+      image:
+        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      name: 'Event 3',
+      text: "Don't miss it",
+    },
+  ];
+
+  const keywordsArray = [];
+  const createKeywords = () => {
+    for (let i = 1; i <= 10; i++) {
+      keywordsArray.push({
+        id: i,
+        keyword: '#keyword',
+      });
+    }
+    return keywordsArray;
+  };
+  createKeywords();
+
+  const keywordsList = useRef();
+  const [keyword, setKeyword] = useState({
+    keyword: 1,
+  });
+
+  const onClickLeft = () => {
+    console.log(keywordsList.current);
+  };
+  const onClickRight = () => {
+    console.log(keywordsList.current.className);
+  };
+
   return (
     <div>
-      {/* Visual Image 
-      <ImageSlider /> */}
-      <div
-        style={{
-          width: '100%',
-          height: '500px',
-          marginTop: '-6px',
-          backgroundColor: '#eee',
-          textAlign: 'center',
-          lineHeight: '500px',
-        }}
-      >
-        visual images
-      </div>
+      {/* Visual Image */}
+      <Carousel autoplay style={{ marginTop: '-6px' }}>
+        <div>
+          <h3 style={visualSlider}>Visual image 1</h3>
+        </div>
+        <div>
+          <h3 style={visualSlider}>Visual image 2</h3>
+        </div>
+        <div>
+          <h3 style={visualSlider}>Visual image 3</h3>
+        </div>
+        <div>
+          <h3 style={visualSlider}>Visual image 4</h3>
+        </div>
+      </Carousel>
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
         {/* Search */}
@@ -192,63 +173,140 @@ function LandingPage() {
         </div>
 
         {/* Recommendation Products */}
-        <div style={{ textAlign: 'center', margin: '2rem 1.5rem 0' }}>
-          <h2>
-            {' '}
-            Recommendation Products <Icon type="like" />{' '}
-          </h2>
+        <div style={{ margin: '2rem 0' }}>
+          <h2 style={{ marginBottom: '1.5rem' }}> Recommendation Products </h2>
+
+          <ul className="main_list">
+            {exampleProducts.map((product) => (
+              <li key={product.id}>
+                <img src={product.image} />
+                <p>{product.name}</p>
+                <span>{product.price}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <ul className="product_list">
-          {exampleProducts.map((product) => (
-            <li key={product.id}>
-              <img src={product.image} />
-              <p>{product.name}</p>
-              <span>{product.price}</span>
-            </li>
-          ))}
-        </ul>
+        {/* Events */}
+        <div style={{ textAlign: 'center', margin: '8rem 0' }}>
+          <h2 style={{ marginBottom: '1.5rem' }}>Events</h2>
 
-        {/* Filter  */}
-        {/* <Row gutter={[16, 16]}>
-          <Col lg={12} xs={24}>
-            <CheckBox
-              list={continents}
-              handleFilters={(filters) => handleFilters(filters, 'continents')}
-            />
-          </Col>
-          <Col lg={12} xs={24}>
-            <RadioBox
-              list={price}
-              handleFilters={(filters) => handleFilters(filters, 'price')}
-            />
-          </Col>
-        </Row> */}
+          <ul className="main_list events">
+            {exampleEvents.map((event) => (
+              <li key={event.id}>
+                <img src={event.image} />
+                <p style={{ fontWeight: 'bold' }}>{event.name}</p>
+                <span style={{ fontSize: '0.8rem' }}>{event.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* {Products.length === 0 ? (
-          <div
-            style={{
-              display: 'flex',
-              height: '300px',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+        {/* New & Hot Products */}
+        <Tabs defaultActiveKey="1">
+          <TabPane
+            tab={
+              <h2
+                style={{
+                  padding: '0 2.5rem',
+                  fontSize: '1.5rem',
+                }}
+              >
+                New Products
+              </h2>
+            }
+            key="1"
           >
-            <h2>No post yet...</h2>
-          </div>
-        ) : ( */}
-        <div>
-          <Row gutter={[16, 16]}>{renderCards}</Row>
-        </div>
-        {/* )} */}
-        <br />
-        <br />
+            <ul className="main_list" style={{ marginTop: '0.5rem' }}>
+              {exampleProducts.map((product) => (
+                <li key={product.id}>
+                  <img src={product.image} />
+                  <p style={{ fontWeight: 'bold' }}>New {product.name}</p>
+                  <span>New product explains</span>
+                </li>
+              ))}
+            </ul>
+          </TabPane>
+          <TabPane
+            tab={
+              <h2
+                style={{
+                  padding: '0 2.5rem',
+                  fontSize: '1.5rem',
+                }}
+              >
+                Hot Products
+              </h2>
+            }
+            key="2"
+          >
+            <ul className="main_list" style={{ marginTop: '0.5rem' }}>
+              {exampleProducts.map((product) => (
+                <li key={product.id}>
+                  <img src={product.image} />
+                  <p style={{ fontWeight: 'bold' }}>Hot {product.name}</p>
+                  <span>Hot product explains</span>
+                </li>
+              ))}
+            </ul>
+          </TabPane>
+        </Tabs>
 
-        {PostSize >= Limit && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button onClick={onLoadMore}>Load More</button>
+        {/* Sale Products */}
+        <div style={{ margin: '8rem 0' }}>
+          <h2 style={{ marginBottom: '1.5rem' }}>Sales</h2>
+
+          <ul className="main_list">
+            {exampleProducts.map((product) => (
+              <li key={product.id}>
+                <img src={product.image} />
+                <p>Sale {product.name}</p>
+                <span style={{ color: '#fa5252', fontWeight: 'bold' }}>
+                  10%{' '}
+                </span>
+                <span>{product.price}</span>
+                <span
+                  style={{
+                    display: 'block',
+                    marginTop: '0.15rem',
+                    color: '#868e96',
+                    textDecoration: 'line-through',
+                  }}
+                >
+                  {product.price}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Weekly hot keywords */}
+        <div style={{ margin: '8rem 0' }}>
+          <h2 style={{ marginBottom: '1.5rem' }}>Weekly Hot Keywords</h2>
+
+          <div className="keywords_box">
+            <Icon
+              type="left"
+              onClick={onClickLeft}
+              className="keywords_button left"
+            />
+            <ul className="main_list keywords" ref={keywordsList}>
+              {keywordsArray.map((item) => (
+                <li key={item.id}>
+                  <span>
+                    {item.keyword}
+                    {item.id}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <Icon
+              type="right"
+              onClick={onClickRight}
+              className="keywords_button right"
+            />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

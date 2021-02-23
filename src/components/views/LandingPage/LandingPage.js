@@ -131,15 +131,20 @@ function LandingPage() {
   createKeywords();
 
   const keywordsList = useRef();
-  const [keyword, setKeyword] = useState({
-    keyword: 1,
+  const [keywordSlide, setKeywordSlide] = useState({
+    sliding: false,
   });
 
   const onClickLeft = () => {
-    console.log(keywordsList.current);
+    setKeywordSlide({
+      sliding: false,
+    });
   };
+
   const onClickRight = () => {
-    console.log(keywordsList.current.className);
+    setKeywordSlide({
+      sliding: true,
+    });
   };
 
   return (
@@ -290,7 +295,14 @@ function LandingPage() {
               onClick={onClickLeft}
               className="keywords_button left"
             />
-            <ul className="main_list keywords" ref={keywordsList}>
+            <ul
+              className="main_list keywords"
+              ref={keywordsList}
+              style={{
+                left: keywordSlide.sliding ? 'unset' : '0',
+                right: keywordSlide.sliding ? '0' : 'unset',
+              }}
+            >
               {keywordsArray.map((item) => (
                 <li key={item.id}>
                   <span>

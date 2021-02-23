@@ -35,9 +35,7 @@ h2 {
 .keywords_box .keywords {
   position: absolute;
   width: 2000px;
-}
-.keywords_box .keywords.end {
-  right: 0;
+  transition: all 0.4s;
 }
 .keywords_box .keywords li {
   float: left;

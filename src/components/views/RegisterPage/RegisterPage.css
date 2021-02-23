@@ -9,10 +9,11 @@
   border: none;
   letter-spacing: -0.7px;
   font-size: 0.78rem;
+  font-weight: bold;
   cursor: pointer;
 }
 .sns_signup .kakao {
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
 }
 .sns_signup .naver {
   background-position-y: -64px;

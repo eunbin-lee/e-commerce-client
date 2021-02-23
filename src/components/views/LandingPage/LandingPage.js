@@ -10,6 +10,7 @@ function LandingPage() {
   const [Limit, setLimit] = useState(8);
   const [PostSize, setPostSize] = useState();
   const [SearchTerms, setSearchTerms] = useState('');
+
   const { TabPane } = Tabs;
 
   const [Filters, setFilters] = useState({
@@ -55,14 +56,7 @@ function LandingPage() {
     getProducts(variables);
   };
 
-  const visualSlider = {
-    height: '500px',
-    color: '#fff',
-    lineHeight: '500px',
-    textAlign: 'center',
-    background: '#495057',
-  };
-
+  // temporary info
   const exampleProducts = [
     {
       id: 1,
@@ -93,7 +87,6 @@ function LandingPage() {
       price: '00000￦',
     },
   ];
-
   const exampleEvents = [
     {
       id: 1,
@@ -118,6 +111,7 @@ function LandingPage() {
     },
   ];
 
+  //weekly hot keywords
   const keywordsArray = [];
   const createKeywords = () => {
     for (let i = 1; i <= 10; i++) {
@@ -130,17 +124,16 @@ function LandingPage() {
   };
   createKeywords();
 
+  //keywords slider button
   const keywordsList = useRef();
   const [keywordSlide, setKeywordSlide] = useState({
     sliding: false,
   });
-
   const onClickLeft = () => {
     setKeywordSlide({
       sliding: false,
     });
   };
-
   const onClickRight = () => {
     setKeywordSlide({
       sliding: true,
@@ -150,18 +143,18 @@ function LandingPage() {
   return (
     <div>
       {/* Visual Image */}
-      <Carousel autoplay style={{ marginTop: '-6px' }}>
+      <Carousel autoplay style={{ marginTop: '-7px' }}>
         <div>
-          <h3 style={visualSlider}>Visual image 1</h3>
+          <h3 className="visualSlider">Visual image 1</h3>
         </div>
         <div>
-          <h3 style={visualSlider}>Visual image 2</h3>
+          <h3 className="visualSlider">Visual image 2</h3>
         </div>
         <div>
-          <h3 style={visualSlider}>Visual image 3</h3>
+          <h3 className="visualSlider">Visual image 3</h3>
         </div>
         <div>
-          <h3 style={visualSlider}>Visual image 4</h3>
+          <h3 className="visualSlider">Visual image 4</h3>
         </div>
       </Carousel>
 
@@ -211,12 +204,7 @@ function LandingPage() {
         <Tabs defaultActiveKey="1">
           <TabPane
             tab={
-              <h2
-                style={{
-                  padding: '0 2.5rem',
-                  fontSize: '1.5rem',
-                }}
-              >
+              <h2 style={{ padding: '0 2.5rem', fontSize: '1.5rem' }}>
                 New Products
               </h2>
             }
@@ -234,12 +222,7 @@ function LandingPage() {
           </TabPane>
           <TabPane
             tab={
-              <h2
-                style={{
-                  padding: '0 2.5rem',
-                  fontSize: '1.5rem',
-                }}
-              >
+              <h2 style={{ padding: '0 2.5rem', fontSize: '1.5rem' }}>
                 Hot Products
               </h2>
             }

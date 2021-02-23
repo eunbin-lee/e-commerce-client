@@ -9,12 +9,20 @@ h2 {
   font-size: 1.5rem;
 }
 
+.visualSlider {
+  height: 500px;
+  color: #fff;
+  line-height: 500px;
+  text-align: center;
+  background: #495057;
+}
 .main_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 .main_list li {
+  cursor: pointer;
 }
 .main_list li img {
 }

@@ -143,11 +143,15 @@ function LandingPage() {
     });
   };
 
+  //visual
+  const carousel = useRef();
+  console.log(carousel.current);
+
   return (
     <div>
       {/* Visual Image */}
       <div className="visual_box">
-        <Carousel autoplay style={{ marginTop: '-7px' }}>
+        <Carousel autoplay ref={carousel} style={{ marginTop: '-7px' }}>
           <div>
             <h3 className="visual_slide">Visual image 1</h3>
           </div>

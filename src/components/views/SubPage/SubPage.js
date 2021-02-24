@@ -1,14 +1,15 @@
 import React from 'react';
 import { Icon, Select } from 'antd';
+// import CreateProducts from './CreateProducts';
 
 function SubPage() {
   const { Option } = Select;
 
   // 베스트 상품 목록
-  const bestProducts = [];
+  const products = [];
   const createProducts = () => {
     for (let i = 1; i <= 20; i++) {
-      bestProducts.push({
+      products.push({
         id: i,
         image: `https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg`,
         name: `Best Product${i}`,
@@ -17,9 +18,20 @@ function SubPage() {
         reviews: `10`,
       });
     }
-    return bestProducts;
+    return products;
   };
   createProducts();
+
+  const pages = [];
+  const createPages = () => {
+    for (let i = 1; i <= 5; i++) {
+      pages.push({
+        id: i,
+      });
+    }
+    return pages;
+  };
+  createPages();
 
   return (
     <div
@@ -55,7 +67,7 @@ function SubPage() {
           justifyContent: 'space-between',
         }}
       >
-        {bestProducts.map((product) => (
+        {products.map((product) => (
           <li
             key={product.id}
             style={{ width: '320px', margin: '0 5px 50px', cursor: 'pointer' }}
@@ -64,10 +76,10 @@ function SubPage() {
               src={product.image}
               style={{ width: '320px', height: '400px' }}
             />
-            <p style={{ marginTop: '0.75rem', fontSize: '1.2rem' }}>
+            <p style={{ marginTop: '0.75rem', fontSize: '1.15rem' }}>
               {product.name}
             </p>
-            <p style={{ marginTop: '-0.5rem', fontSize: '1.15rem' }}>
+            <p style={{ marginTop: '-0.5rem', fontSize: '1.1rem' }}>
               {product.price}
             </p>
             <div style={{ marginTop: '2rem', fontSize: '1rem' }}>
@@ -82,33 +94,55 @@ function SubPage() {
         ))}
       </ul>
 
-      <div>
-        <ul
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: '70px 0',
+        }}
+      >
+        {/*  <a
+          href="/"
           style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            //   alignItems: 'center',
-            marginTop: '70px',
+            color: '#495057',
+            fontSize: '1rem',
+            marginBottom: '12px',
+            marginLeft: '8px',
           }}
         >
-          <li>
-            <a href="/">1</a>
-          </li>
-          <li>
-            <a href="/">2</a>
-          </li>
-          <li>
-            <a href="/">3</a>
-          </li>
-          <li>
-            <a href="/">4</a>
-          </li>
-          <li>
-            <a href="/">5</a>
-          </li>
+          <Icon type="left" />
+        </a> */}
+        <ul style={{ display: 'flex' }}>
+          {pages.map((page) => (
+            <li style={{ margin: '0 10px' }}>
+              <a
+                href="/"
+                style={{
+                  color: '#495057',
+                  fontSize: '1.05rem',
+                  padding: '3px',
+                }}
+              >
+                {page.id}
+              </a>
+            </li>
+          ))}
         </ul>
+        <a
+          href="/"
+          style={{
+            color: '#495057',
+            fontSize: '1rem',
+            marginBottom: '12px',
+            marginLeft: '8px',
+          }}
+        >
+          <Icon type="right" />
+        </a>
       </div>
+
+      {/* <CreateProducts products={products} /> */}
     </div>
   );
 }

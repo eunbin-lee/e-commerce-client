@@ -151,7 +151,7 @@ function LandingPage() {
     <div>
       {/* Visual Image */}
       <div className="visual_box">
-        <Carousel autoplay ref={carousel} style={{ marginTop: '-7px' }}>
+        <Carousel autoplay style={{ marginTop: '-7px' }} ref={carousel}>
           <div>
             <h3 className="visual_slide">Visual image 1</h3>
           </div>

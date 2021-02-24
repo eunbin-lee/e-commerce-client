@@ -1,26 +1,24 @@
-.sns_signup button {
-  display: flex;
-  align-items: center;
-  width: 160px;
+.sns button {
+  width: 165px;
   height: 32px;
   background: url('../../images/bg_sns.png') no-repeat;
-  margin-bottom: 0.5rem;
-  padding-left: 42px;
+  margin: 0.15rem;
+  padding-left: 45px;
   border: none;
+  text-align: left;
   letter-spacing: -0.7px;
   font-size: 0.78rem;
   font-weight: bold;
   cursor: pointer;
 }
-.sns_signup .kakao {
-  margin-top: 1.75rem;
+.sns .kakao {
 }
-.sns_signup .naver {
+.sns .naver {
   background-position-y: -64px;
 }
-.sns_signup .google {
+.sns .google {
   background-position-y: -96px;
 }
-.sns_signup .facebook {
+.sns .facebook {
   background-position-y: -32px;
 }

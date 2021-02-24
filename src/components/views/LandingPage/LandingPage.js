@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
 import { Icon, Card, Tabs, Carousel } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
+// import Slider from 'react-slick';
+// import '~slick-carousel/slick/slick.css';
+// import '~slick-carousel/slick/slick-theme.css';
 import './LandingPage.css';
 
 function LandingPage() {
@@ -143,20 +146,25 @@ function LandingPage() {
   return (
     <div>
       {/* Visual Image */}
-      <Carousel autoplay style={{ marginTop: '-7px' }}>
-        <div>
-          <h3 className="visualSlider">Visual image 1</h3>
-        </div>
-        <div>
-          <h3 className="visualSlider">Visual image 2</h3>
-        </div>
-        <div>
-          <h3 className="visualSlider">Visual image 3</h3>
-        </div>
-        <div>
-          <h3 className="visualSlider">Visual image 4</h3>
-        </div>
-      </Carousel>
+      <div className="visual_box">
+        <Carousel autoplay style={{ marginTop: '-7px' }}>
+          <div>
+            <h3 className="visual_slide">Visual image 1</h3>
+          </div>
+          <div>
+            <h3 className="visual_slide">Visual image 2</h3>
+          </div>
+          <div>
+            <h3 className="visual_slide">Visual image 3</h3>
+          </div>
+          <div>
+            <h3 className="visual_slide">Visual image 4</h3>
+          </div>
+        </Carousel>
+
+        <Icon type="left" className="visual_button prev" />
+        <Icon type="right" className="visual_button next" />
+      </div>
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
         {/* Search */}

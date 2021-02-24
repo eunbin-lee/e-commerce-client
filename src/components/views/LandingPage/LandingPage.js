@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
-import { Icon, Card, Tabs, Carousel } from 'antd';
+import { Icon, Tabs, Carousel } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
-// import Slider from 'react-slick';
-// import '~slick-carousel/slick/slick.css';
-// import '~slick-carousel/slick/slick-theme.css';
+import CreateProducts from '../../utils/CreateProducts';
 import './LandingPage.css';
 
 function LandingPage() {
@@ -143,15 +141,11 @@ function LandingPage() {
     });
   };
 
-  //visual
-  const carousel = useRef();
-  console.log(carousel.current);
-
   return (
     <div>
       {/* Visual Image */}
       <div className="visual_box">
-        <Carousel autoplay style={{ marginTop: '-7px' }} ref={carousel}>
+        <Carousel autoplay style={{ marginTop: '-7px' }}>
           <div>
             <h3 className="visual_slide">Visual image 1</h3>
           </div>

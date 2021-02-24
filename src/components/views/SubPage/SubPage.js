@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, Select } from 'antd';
-// import CreateProducts from './CreateProducts';
+import CreateProducts from '../../utils/CreateProducts';
 
 function SubPage() {
   const { Option } = Select;
@@ -67,31 +67,7 @@ function SubPage() {
           justifyContent: 'space-between',
         }}
       >
-        {products.map((product) => (
-          <li
-            key={product.id}
-            style={{ width: '320px', margin: '0 5px 50px', cursor: 'pointer' }}
-          >
-            <img
-              src={product.image}
-              style={{ width: '320px', height: '400px' }}
-            />
-            <p style={{ marginTop: '0.75rem', fontSize: '1.15rem' }}>
-              {product.name}
-            </p>
-            <p style={{ marginTop: '-0.5rem', fontSize: '1.1rem' }}>
-              {product.price}
-            </p>
-            <div style={{ marginTop: '2rem', fontSize: '1rem' }}>
-              <span style={{ marginRight: '1rem' }}>
-                <Icon type="heart" /> {product.likes}
-              </span>
-              <span>
-                <Icon type="message" /> {product.reviews}
-              </span>
-            </div>
-          </li>
-        ))}
+        <CreateProducts products={products} />
       </ul>
 
       <div
@@ -141,8 +117,6 @@ function SubPage() {
           <Icon type="right" />
         </a>
       </div>
-
-      {/* <CreateProducts products={products} /> */}
     </div>
   );
 }

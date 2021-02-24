@@ -1,16 +1,17 @@
 import React from 'react';
+import { Icon } from 'antd';
 
 function CreateProducts({ products }) {
   return (
     <>
       {products.map((product) => (
-        <div
+        <li
           key={product.id}
-          style={{ width: '320px', margin: '0 5px 50px', cursor: 'pointer' }}
+          style={{ width: '300px', margin: '0 5px 60px', cursor: 'pointer' }}
         >
           <img
             src={product.image}
-            style={{ width: '320px', height: '400px' }}
+            style={{ width: '300px', height: '380px' }}
           />
           <p style={{ marginTop: '0.75rem', fontSize: '1.15rem' }}>
             {product.name}
@@ -26,7 +27,7 @@ function CreateProducts({ products }) {
               <Icon type="message" /> {product.reviews}
             </span>
           </div>
-        </div>
+        </li>
       ))}
     </>
   );

@@ -12,7 +12,7 @@ function SubPage() {
       products.push({
         id: i,
         image: `https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg`,
-        name: `Best Product${i}`,
+        name: `Product${i}`,
         price: `00000￦`,
         likes: `234`,
         reviews: `10`,
@@ -62,15 +62,7 @@ function SubPage() {
       </div>
 
       {/* products */}
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-        }}
-      >
-        <CreateProducts products={products} />
-      </ul>
+      <CreateProducts products={products} />
 
       {/* pagination */}
       <div

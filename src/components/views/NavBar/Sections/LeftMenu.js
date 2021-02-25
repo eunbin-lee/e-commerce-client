@@ -24,10 +24,10 @@ function LeftMenu(props) {
         <Link to="/sub">Best</Link>
       </Menu.Item>
       <Menu.Item key="new_menu">
-        <Link to="/sub">New</Link>
+        <Link to="/">New</Link>
       </Menu.Item>
       <Menu.Item key="sales_menu">
-        <Link to="/sub">Sales</Link>
+        <Link to="/">Sales</Link>
       </Menu.Item>
     </Menu>
   );

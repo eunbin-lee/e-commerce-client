@@ -10,7 +10,7 @@ function ProductTabs({ tabs, onSelectTab }) {
             <li
               key={tab.id}
               className={tab.selected ? 'on' : 'off'}
-              onSelectTab={onSelectTab}
+              onClick={() => onSelectTab(tab.id)}
             >
               <a href={`#tab${tab.id}`}>{tab.name}</a>
             </li>

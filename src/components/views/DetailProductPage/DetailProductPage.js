@@ -29,7 +29,7 @@ function DetailProductPage(props) {
     {
       id: 1,
       name: 'Details',
-      selected: true,
+      selected: false,
     },
     {
       id: 2,

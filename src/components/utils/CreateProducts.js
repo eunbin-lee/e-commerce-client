@@ -4,7 +4,13 @@ import { Icon } from 'antd';
 
 function CreateProducts({ products }) {
   return (
-    <>
+    <ul
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      }}
+    >
       {products.map((product) => (
         <Link to="/product/:productId">
           <li
@@ -50,7 +56,7 @@ function CreateProducts({ products }) {
           </li>
         </Link>
       ))}
-    </>
+    </ul>
   );
 }
 

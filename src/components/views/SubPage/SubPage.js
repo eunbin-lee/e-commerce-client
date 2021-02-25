@@ -5,7 +5,7 @@ import CreateProducts from '../../utils/CreateProducts';
 function SubPage() {
   const { Option } = Select;
 
-  // 베스트 상품 목록
+  //best products info
   const products = [];
   const createProducts = () => {
     for (let i = 1; i <= 20; i++) {
@@ -22,6 +22,7 @@ function SubPage() {
   };
   createProducts();
 
+  //pagination
   const pages = [];
   const createPages = () => {
     for (let i = 1; i <= 5; i++) {
@@ -60,6 +61,7 @@ function SubPage() {
         </Select>
       </div>
 
+      {/* products */}
       <ul
         style={{
           display: 'flex',
@@ -70,6 +72,7 @@ function SubPage() {
         <CreateProducts products={products} />
       </ul>
 
+      {/* pagination */}
       <div
         style={{
           display: 'flex',

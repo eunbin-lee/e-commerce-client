@@ -11,14 +11,13 @@ h2 {
 
 .visual_box {
   position: relative;
+  overflow: hidden;
+  width: 100%;
   margin-top: -7px;
 }
 .visual_box .visual_slide {
-  height: 500px;
-  color: #fff;
-  line-height: 500px;
-  text-align: center;
-  background: #495057;
+  width: 100%;
+  display: flex;
 }
 .visual_box .visual_button {
   position: absolute;

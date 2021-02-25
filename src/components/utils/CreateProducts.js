@@ -15,13 +15,31 @@ function CreateProducts({ products }) {
               src={product.image}
               style={{ width: '300px', height: '380px' }}
             />
-            <p style={{ marginTop: '0.75rem', fontSize: '1.15rem' }}>
+            <p
+              style={{
+                marginTop: '0.75rem',
+                fontSize: '1.15rem',
+                color: 'rgba(0,0,0,0.65)',
+              }}
+            >
               {product.name}
             </p>
-            <p style={{ marginTop: '-0.5rem', fontSize: '1.1rem' }}>
+            <p
+              style={{
+                marginTop: '-0.5rem',
+                fontSize: '1.1rem',
+                color: 'rgba(0,0,0,0.65)',
+              }}
+            >
               {product.price}
             </p>
-            <div style={{ marginTop: '2rem', fontSize: '1rem' }}>
+            <div
+              style={{
+                marginTop: '2rem',
+                fontSize: '1rem',
+                color: 'rgba(0,0,0,0.65)',
+              }}
+            >
               <span style={{ marginRight: '1rem' }}>
                 <Icon type="heart" /> {product.likes}
               </span>

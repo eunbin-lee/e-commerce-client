@@ -9,37 +9,6 @@ h2 {
   font-size: 1.5rem;
 }
 
-.visual_box {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin-top: -7px;
-}
-.visual_box .visual_slide {
-  width: 100%;
-  display: flex;
-}
-.visual_box .visual_button {
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
-  padding: 10px;
-  font-size: 40px;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  cursor: pointer;
-}
-.visual_box .visual_button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-.visual_box .prev {
-  left: 40px;
-}
-.visual_box .next {
-  right: 40px;
-}
-
 .main_list {
   display: flex;
   flex-wrap: wrap;

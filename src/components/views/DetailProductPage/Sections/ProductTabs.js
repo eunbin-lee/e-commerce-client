@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductTabs.css';
 
-function ProductTabs({ tabs, onSelectTab }) {
+function ProductTabs({ tabs, onSelect }) {
   return (
     <>
       <div className="tabs_box" style={{ paddingTop: '3px' }}>
@@ -10,9 +10,9 @@ function ProductTabs({ tabs, onSelectTab }) {
             <li
               key={tab.id}
               className={tab.selected ? 'on' : 'off'}
-              onClick={() => onSelectTab(tab.id)}
+              onClick={() => onSelect(tab.id)}
             >
-              <a href={`#tab${tab.id}`}>{tab.name}</a>
+              <a href={`#`}>{tab.name}</a>
             </li>
           ))}
         </ul>

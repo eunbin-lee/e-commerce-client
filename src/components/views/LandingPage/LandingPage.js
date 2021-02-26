@@ -1,13 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
-import { Icon, Tabs, Carousel } from 'antd';
+import { Icon, Tabs } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import CreateProducts from '../../utils/CreateProducts';
 import VisualSlider from './Sections/VisualSlider';
-import visual_img1 from '../../images/visual_1.png';
-import visual_img2 from '../../images/visual_2.png';
-import visual_img3 from '../../images/visual_3.png';
-import visual_img4 from '../../images/visual_4.png';
 import './LandingPage.css';
 
 function LandingPage() {
@@ -146,57 +142,10 @@ function LandingPage() {
     });
   };
 
-  //visual slider
-  const TOTAL_VISUALS = 3;
-  const [currentVisual, setCurrentVisual] = useState(0);
-  const visualRef = useRef(null);
-
-  const nextVisual = () => {
-    if (currentVisual >= TOTAL_VISUALS) {
-      setCurrentVisual(0);
-    } else {
-      setCurrentVisual(currentVisual + 1);
-    }
-  };
-  const prevVisual = () => {
-    if (currentVisual === 0) {
-      setCurrentVisual(TOTAL_VISUALS);
-    } else {
-      setCurrentVisual(currentVisual - 1);
-    }
-  };
-
-  useEffect(() => {
-    visualRef.current.style.transition = 'all 0.5s ease-in-out';
-    visualRef.current.style.transform = `translateX(-${currentVisual}00%)`;
-  }, [currentVisual]);
-
-  const playVisual = () => {
-    setInterval(() => {
-      for (let i = 0; i < TOTAL_VISUALS; i++) {
-        visualRef.current.style.transform = `translateX(-${i}00%)`;
-      }
-      TOTAL_VISUALS = 0;
-    }, 500);
-  };
-
   return (
     <div>
       {/* Visual Image */}
-      <div className="visual_box">
-        <div className="visual_slide" ref={visualRef}>
-          <VisualSlider img={visual_img1} />
-          <VisualSlider img={visual_img2} />
-          <VisualSlider img={visual_img3} />
-          <VisualSlider img={visual_img4} />
-        </div>
-        <Icon type="left" className="visual_button prev" onClick={prevVisual} />
-        <Icon
-          type="right"
-          className="visual_button next"
-          onClick={nextVisual}
-        />
-      </div>
+      <VisualSlider />
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
         {/* Search */}

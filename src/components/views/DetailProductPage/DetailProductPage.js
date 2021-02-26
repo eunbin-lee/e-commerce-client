@@ -5,8 +5,7 @@ import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
 import { addToCart } from '../../../_actions/user_actions';
 import { useDispatch } from 'react-redux';
-import './DetailProductPage.css';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ProductDetails from './Sections/ProductDetails';
 
 function DetailProductPage(props) {
   const dispatch = useDispatch();
@@ -23,15 +22,6 @@ function DetailProductPage(props) {
 
   const addToCartHandler = (productId) => {
     dispatch(addToCart(productId));
-  };
-
-  const [tabs, setTabs] = useState(0);
-  const [color, setColor] = useState(false);
-
-  const onChangeColor = () => {
-    setColor({
-      color: !color,
-    });
   };
 
   return (
@@ -52,41 +42,7 @@ function DetailProductPage(props) {
         </Col>
       </Row>
 
-      <Tabs
-        selectedIndex={tabs}
-        onSelect={(tabs) => setTabs(tabs)}
-        className="tabs_box"
-      >
-        <TabList className="tabs_list">
-          <Tab
-            className={`tab ${color ? 'on' : 'off'}`}
-            onClick={onChangeColor}
-          >
-            <span>Details</span>
-          </Tab>
-          <Tab className={`tab ${color ? 'on' : 'off'}`}>
-            <span>Related</span>
-          </Tab>
-          <Tab className={`tab ${color ? 'on' : 'off'}`}>
-            <span>Reviews</span>
-          </Tab>
-          <Tab className={`tab ${color ? 'on' : 'off'}`}>
-            <span>Q &amp; A</span>
-          </Tab>
-        </TabList>
-        <TabPanel style={{ textAlign: 'center' }}>
-          <div>Detailed Description</div>
-        </TabPanel>
-        <TabPanel style={{ textAlign: 'center' }}>
-          <div>Related Products</div>
-        </TabPanel>
-        <TabPanel style={{ textAlign: 'center' }}>
-          <div>Reviews</div>
-        </TabPanel>
-        <TabPanel style={{ textAlign: 'center' }}>
-          <div>Q &amp; A</div>
-        </TabPanel>
-      </Tabs>
+      <ProductDetails />
     </div>
   );
 }

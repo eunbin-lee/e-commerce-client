@@ -12,15 +12,42 @@ function ProductInfo(props) {
     props.addToCart(props.detail._id);
   };
 
+  //상품 옵션
   const { Option } = Select;
+  const optionList = [
+    { id: 1, title: 'option1', quantity: 1 },
+    { id: 2, title: 'option2', quantity: 1 },
+    { id: 3, title: 'option3', quantity: 1 },
+  ];
+  const [options, setOptions] = useState([]);
+  const onClick = (id) => {
+    if (options.find((option) => option.id === id)) {
+      return alert('이미 선택한 옵션입니다.');
+    }
+    setOptions(options.concat(optionList[id - 1]));
+  };
+  const onRemove = (id) => {
+    setOptions(options.filter((option) => option.id !== id));
+  };
 
   //상품 수량
-  const [quantity, setQuantity] = useState(1);
-  const onIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
+  const onIncrease = (id) => {
+    setOptions(
+      options.map((option) =>
+        option.id === id
+          ? { ...option, quantity: option.quantity + 1 }
+          : option,
+      ),
+    );
   };
-  const onDecreaseQuantity = () => {
-    setQuantity(quantity - 1);
+  const onDecrease = (id) => {
+    setOptions(
+      options.map((option) =>
+        option.id === id
+          ? { ...option, quantity: option.quantity - 1 }
+          : option,
+      ),
+    );
   };
 
   return (
@@ -41,64 +68,86 @@ function ProductInfo(props) {
       <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', padding: '0 8px' }}>
         PRODUCT {Product.title}
       </h3>
+
       <table style={{ border: 'hidden', marginTop: '30px' }}>
         <tr>
           <td colSpan="2" style={{ fontSize: '1rem', padding: '0 8px 40px' }}>
             {Product.price} 00000￦
           </td>
         </tr>
-        <tr
-          style={{
-            backgroundColor: '#fff',
-            border: 'hidden',
-          }}
-        >
-          <td style={{ border: 'hidden', width: '65%' }}>
+        <tr style={{ backgroundColor: '#fff' }}>
+          <td colSpan="2" style={{ border: 'hidden' }}>
             <Select defaultValue="option" style={{ width: '100%' }}>
               <Option value="option">- Please select option -</Option>
-              <Option value="option1">option1</Option>
-              <Option value="option2">option2</Option>
-              <Option value="option3">option3</Option>
+              {optionList.map((option) => (
+                <Option value={option.title} onClick={() => onClick(option.id)}>
+                  {option.title}
+                </Option>
+              ))}
             </Select>
           </td>
-          <td style={{ borderSpacing: '0' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '5.5px',
-                border: '1px solid #dee2e6',
-              }}
-            >
-              <Icon
-                type="minus"
-                style={{ cursor: 'pointer' }}
-                onClick={onDecreaseQuantity}
-              />
-              <input
-                type="text"
-                value={quantity}
+        </tr>
+        {options.map((option) => (
+          <tr style={{ backgroundColor: '#fff' }}>
+            <td style={{ border: 'hidden' }}>
+              <div
                 style={{
                   width: '100%',
-                  textAlign: 'center',
-                  border: 'none',
-                  margin: '0 10px',
+                  display: 'flex',
+                  paddingBottom: '5px',
+                  borderBottom: '1px solid #dee2e6',
+                  fontSize: '0.8rem',
                 }}
-              />
-              <Icon
-                type="plus"
-                style={{ cursor: 'pointer' }}
-                onClick={onIncreaseQuantity}
-              />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td colSpan="2" style={{ border: 'hidden' }}>
-            Show selected option
-          </td>
-        </tr>
+              >
+                <div style={{ width: '78%', paddingLeft: '20px' }}>
+                  {option.title}
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center',
+                    fontSize: '0.7rem',
+                  }}
+                >
+                  <Icon
+                    type="minus"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => onDecrease(option.id)}
+                  />
+                  <input
+                    type="text"
+                    value={option.quantity}
+                    style={{
+                      width: '30px',
+                      textAlign: 'center',
+                      border: 'none',
+                      margin: '0 5px',
+                    }}
+                  />
+                  <Icon
+                    type="plus"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => onIncrease(option.id)}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: '10%',
+                    textAlign: 'center',
+                    fontSize: '0.8rem',
+                  }}
+                >
+                  <Icon
+                    type="close-square"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => onRemove(option.id)}
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+        ))}
         <tr style={{ backgroundColor: '#fff' }}>
           <td colSpan="2" style={{ paddingTop: '25px', textAlign: 'right' }}>
             Total Price

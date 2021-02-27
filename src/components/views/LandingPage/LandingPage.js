@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
 import { Icon, Tabs } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
-import CreateProducts from '../../utils/CreateProducts';
+// import CreateProducts from '../../utils/CreateProducts';
 import VisualSlider from './Sections/VisualSlider';
 import './LandingPage.css';
 

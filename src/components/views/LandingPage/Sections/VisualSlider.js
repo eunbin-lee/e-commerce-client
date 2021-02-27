@@ -129,23 +129,19 @@ function VisualSlider() {
         {images.map((img, i) => {
           return (
             <Slide key={`${img.title}_${i}`}>
-              {' '}
-              <img src={img.src} />{' '}
+              <img src={img.src} />
             </Slide>
           );
-        })}{' '}
-      </Slick>{' '}
+        })}
+      </Slick>
       <>
-        {' '}
         <PrevButton onClick={previous}>
-          {' '}
           <Icon type="left" /> <span className="hidden"></span>
-        </PrevButton>{' '}
+        </PrevButton>
         <NextButton onClick={next}>
-          {' '}
           <Icon type="right" /> <span className="hidden"></span>
-        </NextButton>{' '}
-      </>{' '}
+        </NextButton>
+      </>
     </Wrap>
   );
 }

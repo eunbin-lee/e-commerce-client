@@ -59,7 +59,7 @@ function VisualSlider() {
     height: 500px;
     text-align: center;
     img {
-      max-width: 100%;
+      width: 100%;
       height: 100%;
       vertical-align: top;
     }

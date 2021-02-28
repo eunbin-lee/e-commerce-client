@@ -27,7 +27,9 @@ function App() {
             path="/product/upload"
             component={Auth(UploadProductPage, true)}
           />
-          <Route exact path="/sub" component={Auth(SubPage, null)} />
+          <Route exact path="/sub/best" component={Auth(SubPage, null)} />
+          <Route exact path="/sub/new" component={Auth(SubPage, null)} />
+          <Route exact path="/sub/discount" component={Auth(SubPage, null)} />
           <Route
             exact
             path="/product/:productId"

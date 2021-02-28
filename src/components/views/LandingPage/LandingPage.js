@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Axios from 'axios';
 import { Icon, Tabs } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
-// import CreateProducts from '../../utils/CreateProducts';
+import ProductsList from '../../utils/ProductsList';
 import VisualSlider from './Sections/VisualSlider';
 import './LandingPage.css';
 
@@ -12,8 +12,6 @@ function LandingPage() {
   const [Limit, setLimit] = useState(8);
   const [PostSize, setPostSize] = useState();
   const [SearchTerms, setSearchTerms] = useState('');
-
-  const { TabPane } = Tabs;
 
   const [Filters, setFilters] = useState({
     continents: [],
@@ -58,33 +56,31 @@ function LandingPage() {
     getProducts(variables);
   };
 
-  // temporary info
+  //example
+  const imageUrl =
+    'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg';
   const exampleProducts = [
     {
       id: 1,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Product 1',
       price: '00000￦',
     },
     {
       id: 2,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Product 2',
       price: '00000￦',
     },
     {
       id: 3,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Product 3',
       price: '00000￦',
     },
     {
       id: 4,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Product 4',
       price: '00000￦',
     },
@@ -92,26 +88,112 @@ function LandingPage() {
   const exampleEvents = [
     {
       id: 1,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Event 1',
       text: "Don't miss it",
     },
     {
       id: 2,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Event 2',
       text: "Don't miss it",
     },
     {
       id: 3,
-      image:
-        'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
+      image: imageUrl,
       name: 'Event 3',
       text: "Don't miss it",
     },
   ];
+  const exampleNewProducts = [
+    {
+      id: 1,
+      image: imageUrl,
+      name: 'New Product 1',
+      text: 'New product explains',
+    },
+    {
+      id: 2,
+      image: imageUrl,
+      name: 'New Product 2',
+      text: 'New product explains',
+    },
+    {
+      id: 3,
+      image: imageUrl,
+      name: 'New Product 3',
+      text: 'New product explains',
+    },
+    {
+      id: 4,
+      image: imageUrl,
+      name: 'New Product 4',
+      text: 'New product explains',
+    },
+  ];
+  const exampleHotProducts = [
+    {
+      id: 1,
+      image: imageUrl,
+      name: 'Hot Product 1',
+      text: 'Hot product explains',
+    },
+    {
+      id: 2,
+      image: imageUrl,
+      name: 'Hot Product 2',
+      text: 'Hot product explains',
+    },
+    {
+      id: 3,
+      image: imageUrl,
+      name: 'Hot Product 3',
+      text: 'Hot product explains',
+    },
+    {
+      id: 4,
+      image: imageUrl,
+      name: 'Hot Product 4',
+      text: 'Hot product explains',
+    },
+  ];
+  const exampleDiscountedProducts = [
+    {
+      id: 1,
+      image: imageUrl,
+      name: 'Discounted Product 1',
+      discountRate: '10%',
+      discount: '00000￦',
+      cost: '00000￦',
+    },
+    {
+      id: 2,
+      image: imageUrl,
+      name: 'Discounted Product 2',
+      discountRate: '15%',
+      discount: '00000￦',
+      cost: '00000￦',
+    },
+    {
+      id: 3,
+      image: imageUrl,
+      name: 'Discounted Product 3',
+      discountRate: '20%',
+      discount: '00000￦',
+      cost: '00000￦',
+    },
+    {
+      id: 4,
+      image: imageUrl,
+      name: 'Discounted Product 4',
+      discountRate: '25%',
+      discount: '00000￦',
+      cost: '00000￦',
+    },
+  ];
+
+  //new & hot products
+  const { TabPane } = Tabs;
 
   //weekly hot keywords
   const keywordsArray = [];
@@ -162,31 +244,13 @@ function LandingPage() {
         {/* Recommendation Products */}
         <div style={{ margin: '2rem 0' }}>
           <h2 style={{ marginBottom: '1.5rem' }}> Recommendation Products </h2>
-
-          <ul className="main_list">
-            {exampleProducts.map((product) => (
-              <li key={product.id}>
-                <img src={product.image} />
-                <p>{product.name}</p>
-                <span>{product.price}</span>
-              </li>
-            ))}
-          </ul>
+          <ProductsList products={exampleProducts} />
         </div>
 
         {/* Events */}
         <div style={{ textAlign: 'center', margin: '8rem 0' }}>
           <h2 style={{ marginBottom: '1.5rem' }}>Events</h2>
-
-          <ul className="main_list events">
-            {exampleEvents.map((event) => (
-              <li key={event.id}>
-                <img src={event.image} />
-                <p style={{ fontWeight: 'bold' }}>{event.name}</p>
-                <span style={{ fontSize: '0.8rem' }}>{event.text}</span>
-              </li>
-            ))}
-          </ul>
+          <ProductsList products={exampleEvents} />
         </div>
 
         {/* New & Hot Products */}
@@ -199,15 +263,7 @@ function LandingPage() {
             }
             key="1"
           >
-            <ul className="main_list" style={{ marginTop: '0.5rem' }}>
-              {exampleProducts.map((product) => (
-                <li key={product.id}>
-                  <img src={product.image} />
-                  <p style={{ fontWeight: 'bold' }}>New {product.name}</p>
-                  <span>New product explains</span>
-                </li>
-              ))}
-            </ul>
+            <ProductsList products={exampleNewProducts} />
           </TabPane>
           <TabPane
             tab={
@@ -217,44 +273,14 @@ function LandingPage() {
             }
             key="2"
           >
-            <ul className="main_list" style={{ marginTop: '0.5rem' }}>
-              {exampleProducts.map((product) => (
-                <li key={product.id}>
-                  <img src={product.image} />
-                  <p style={{ fontWeight: 'bold' }}>Hot {product.name}</p>
-                  <span>Hot product explains</span>
-                </li>
-              ))}
-            </ul>
+            <ProductsList products={exampleHotProducts} />
           </TabPane>
         </Tabs>
 
-        {/* Sale Products */}
+        {/* Discounted Products */}
         <div style={{ margin: '8rem 0' }}>
-          <h2 style={{ marginBottom: '1.5rem' }}>Sales</h2>
-
-          <ul className="main_list">
-            {exampleProducts.map((product) => (
-              <li key={product.id}>
-                <img src={product.image} />
-                <p>Sale {product.name}</p>
-                <span style={{ color: '#fa5252', fontWeight: 'bold' }}>
-                  10%{' '}
-                </span>
-                <span>{product.price}</span>
-                <span
-                  style={{
-                    display: 'block',
-                    marginTop: '0.15rem',
-                    color: '#868e96',
-                    textDecoration: 'line-through',
-                  }}
-                >
-                  {product.price}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <h2 style={{ marginBottom: '1.5rem' }}>Discount</h2>
+          <ProductsList products={exampleDiscountedProducts} />
         </div>
 
         {/* Weekly hot keywords */}

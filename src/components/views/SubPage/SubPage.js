@@ -1,27 +1,11 @@
 import React from 'react';
-import { Icon, Select } from 'antd';
-import CreateProducts from '../../utils/CreateProducts';
+import { Route, Switch } from 'react-router-dom';
+import { Icon } from 'antd';
+import Best from './Sections/Best';
+import New from './Sections/New';
+import Discount from './Sections/Discount';
 
 function SubPage() {
-  const { Option } = Select;
-
-  //best products info
-  const products = [];
-  const createProducts = () => {
-    for (let i = 1; i <= 20; i++) {
-      products.push({
-        id: i,
-        image: `https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg`,
-        name: `Product${i}`,
-        price: `00000￦`,
-        likes: `234`,
-        reviews: `10`,
-      });
-    }
-    return products;
-  };
-  createProducts();
-
   //pagination
   const pages = [];
   const createPages = () => {
@@ -42,27 +26,11 @@ function SubPage() {
         marginTop: '-6px',
       }}
     >
-      <h2 style={{ margin: '50px 5px 30px' }}>Best</h2>
-
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          margin: '20px 5px',
-        }}
-      >
-        <Select defaultValue="recommendation_order" style={{ width: '150px' }}>
-          <Option value="recommendation_order">추천순</Option>
-          <Option value="new_product_order">신상품순</Option>
-          <Option value="low_price_order">낮은가격순</Option>
-          <Option value="high_price_order">높은가격순</Option>
-          <Option value="best_likes_order">베스트하트순</Option>
-          <Option value="best_review_order">베스트리뷰순</Option>
-        </Select>
-      </div>
-
-      {/* products */}
-      <CreateProducts products={products} />
+      <Switch>
+        <Route exact path="/sub/best" component={Best} />
+        <Route exact path="/sub/new" component={New} />
+        <Route exact path="/sub/discount" component={Discount} />
+      </Switch>
 
       {/* pagination */}
       <div

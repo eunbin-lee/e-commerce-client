@@ -21,13 +21,13 @@ function LeftMenu(props) {
         </MenuItemGroup>
       </SubMenu>
       <Menu.Item key="best_menu">
-        <Link to="/sub">Best</Link>
+        <Link to="/sub/best">Best</Link>
       </Menu.Item>
       <Menu.Item key="new_menu">
-        <Link to="/">New</Link>
+        <Link to="/sub/new">New</Link>
       </Menu.Item>
-      <Menu.Item key="sales_menu">
-        <Link to="/">Sales</Link>
+      <Menu.Item key="discount_menu">
+        <Link to="/sub/discount">Discount</Link>
       </Menu.Item>
     </Menu>
   );

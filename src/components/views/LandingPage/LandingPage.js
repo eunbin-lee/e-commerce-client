@@ -208,7 +208,9 @@ function LandingPage() {
   };
   createKeywords();
 
-  //keywords slider button
+  const prevKeyword = () => {};
+  const nextKeyword = () => {};
+
   const keywordsList = useRef();
   const [keywordSlide, setKeywordSlide] = useState({
     sliding: false,

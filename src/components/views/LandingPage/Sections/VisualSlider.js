@@ -67,7 +67,7 @@ function VisualSlider() {
   //prev, next button
   const defaultButtonStyle = css`
     position: absolute;
-    top: calc(50% - 20px);
+    top: calc(50% - 25px);
     padding: 0 10px;
     font-size: 40px;
     border: none;
@@ -102,8 +102,8 @@ function VisualSlider() {
   `;
 
   const slickRef = useRef(null);
-  const previous = useCallback(() => slickRef.current.slickPrev(), []);
-  const next = useCallback(() => slickRef.current.slickNext(), []);
+  const prevSlide = useCallback(() => slickRef.current.slickPrev(), []);
+  const nextSlide = useCallback(() => slickRef.current.slickNext(), []);
 
   const settings = {
     autoplay: true,
@@ -135,10 +135,10 @@ function VisualSlider() {
         })}
       </Slick>
       <>
-        <PrevButton onClick={previous}>
+        <PrevButton onClick={prevSlide}>
           <Icon type="left" /> <span className="hidden"></span>
         </PrevButton>
-        <NextButton onClick={next}>
+        <NextButton onClick={nextSlide}>
           <Icon type="right" /> <span className="hidden"></span>
         </NextButton>
       </>

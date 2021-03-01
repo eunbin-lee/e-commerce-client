@@ -14,7 +14,7 @@ const MyCartPage = () => {
       quantity: 1,
       price: 30000,
       delivery: 2500,
-      checked: true,
+      checked: false,
     },
     {
       no: 2,
@@ -91,11 +91,7 @@ const MyCartPage = () => {
         }}
       >
         <Table>
-          <Checkbox
-            style={{ width: '7%' }}
-            onClick={onSelectAll}
-            checked={myCart.map((item) => (item.checked ? true : false))}
-          />
+          <Checkbox style={{ width: '7%' }} onClick={onSelectAll} />
           <div style={{ width: '48%' }}>상품 정보</div>
           <div style={{ width: '15%' }}>수량</div>
           <div style={{ width: '15%' }}>주문금액</div>

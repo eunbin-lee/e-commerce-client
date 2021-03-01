@@ -8,22 +8,22 @@ function VisualSlider() {
   const images = [
     {
       src:
-        'https://www.airelitenetwork.com/wp-content/uploads/2019/02/KGSP-Location-Page_Header-Image_1920x500.jpg',
+        'https://www.advokatfirmaet-ge.dk/wp-content/uploads/2019/02/Ledige_stillinger_advokatfirmaet_grotkjaer_elmstroem_1920x500.jpg',
       title: '1',
     },
     {
       src:
-        'https://www.digitalcheck.com/wp-content/uploads/2018/08/san-diego-skyline-1920x500.jpg',
+        'https://www.vodafoneinnovus.com/wp-content/uploads/2017/07/IoT-platform-header_1920x500.jpg',
       title: '2',
     },
     {
       src:
-        'https://www.airelitenetwork.com/wp-content/uploads/2019/02/KLGB-Location-Page_Header-Image_1920x500.jpg',
+        'https://hotel-adrema.de/wp-content/uploads/2017/11/Weihnachten_1920x500.jpg',
       title: '3',
     },
     {
       src:
-        'https://www.airelitenetwork.com/wp-content/uploads/2019/02/YPPH-Location-Page_Header-Image_1920x500.jpg',
+        'https://lindenmuehle.de/wp-content/uploads/2016/12/bg-header-1920x500_standard_zimmer.jpg',
       title: '4',
     },
   ];

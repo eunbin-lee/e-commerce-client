@@ -10,6 +10,7 @@ import Footer from './views/Footer/Footer';
 import UploadProductPage from './views/UploadProductPage/UploadProductPage';
 import DetailProductPage from './views/DetailProductPage/DetailProductPage';
 import CartPage from './views/CartPage/CartPage';
+import MyCartPage from './views/CartPage/MyCartPage';
 import HistoryPage from './views/HistoryPage/HistoryPage';
 import SubPage from './views/SubPage/SubPage';
 
@@ -35,7 +36,7 @@ function App() {
             path="/product/:productId"
             component={Auth(DetailProductPage, null)}
           />
-          <Route exact path="/user/cart" component={Auth(CartPage, true)} />
+          <Route exact path="/user/cart" component={Auth(MyCartPage, true)} />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
         </Switch>
       </div>

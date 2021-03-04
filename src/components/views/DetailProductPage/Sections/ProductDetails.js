@@ -127,10 +127,10 @@ function ProductDetails() {
   };
 
   const [tabs, setTabs] = useState([
-    { id: 1, title: 'Details', content: content1(), selected: false },
+    { id: 1, title: 'Details', content: content1(), selected: true },
     { id: 2, title: 'Related', content: content2(), selected: false },
     { id: 3, title: 'Reviews', content: content3(), selected: false },
-    { id: 4, title: 'Q & A', content: content4(), selected: true },
+    { id: 4, title: 'Q & A', content: content4(), selected: false },
   ]);
 
   const onSelectTab = (id) => {

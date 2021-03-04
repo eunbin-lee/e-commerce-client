@@ -9,10 +9,11 @@ import NavBar from './views/NavBar/NavBar';
 import Footer from './views/Footer/Footer';
 import UploadProductPage from './views/UploadProductPage/UploadProductPage';
 import DetailProductPage from './views/DetailProductPage/DetailProductPage';
-import CartPage from './views/CartPage/CartPage';
-import MyCartPage from './views/CartPage/MyCartPage';
-import HistoryPage from './views/HistoryPage/HistoryPage';
+// import CartPage from './views/CartPage/CartPage';
 import SubPage from './views/SubPage/SubPage';
+import MyCartPage from './views/CartPage/MyCartPage';
+import WishlistPage from './views/WishlistPage/WishlistPage';
+import HistoryPage from './views/HistoryPage/HistoryPage';
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
             component={Auth(DetailProductPage, null)}
           />
           <Route exact path="/user/cart" component={Auth(MyCartPage, true)} />
+          <Route
+            exact
+            path="/user/wishlist"
+            component={Auth(WishlistPage, true)}
+          />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
         </Switch>
       </div>

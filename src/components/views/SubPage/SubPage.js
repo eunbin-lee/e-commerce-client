@@ -21,9 +21,8 @@ function SubPage() {
   return (
     <div
       style={{
-        width: '80%',
-        margin: '0 auto',
-        marginTop: '-6px',
+        width: '75%',
+        margin: '1rem auto',
       }}
     >
       <Switch>

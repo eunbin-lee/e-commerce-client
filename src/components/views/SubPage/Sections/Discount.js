@@ -16,7 +16,7 @@ const Discount = () => {
         name: `Discounted Product ${i}`,
         discountRate: '10%',
         discount: '00000￦',
-        cost: '00000￦',
+        pre_discount: '00000￦',
         likes: '234',
         reviews: '10',
       });
@@ -26,14 +26,8 @@ const Discount = () => {
   createProducts();
 
   return (
-    <div
-      style={{
-        width: '80%',
-        margin: '0 auto',
-        marginTop: '-6px',
-      }}
-    >
-      <h2 style={{ margin: '50px 5px 30px' }}>Discount</h2>
+    <div>
+      <h2 style={{ margin: '70px 5px 30px' }}>Discount</h2>
 
       <div
         style={{

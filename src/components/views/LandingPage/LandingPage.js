@@ -195,37 +195,6 @@ function LandingPage() {
   //new & hot products
   const { TabPane } = Tabs;
 
-  //weekly hot keywords
-  const keywordsArray = [];
-  const createKeywords = () => {
-    for (let i = 1; i <= 10; i++) {
-      keywordsArray.push({
-        id: i,
-        keyword: '#keyword',
-      });
-    }
-    return keywordsArray;
-  };
-  createKeywords();
-
-  const prevKeyword = () => {};
-  const nextKeyword = () => {};
-
-  const keywordsList = useRef();
-  const [keywordSlide, setKeywordSlide] = useState({
-    sliding: false,
-  });
-  const onClickLeft = () => {
-    setKeywordSlide({
-      sliding: false,
-    });
-  };
-  const onClickRight = () => {
-    setKeywordSlide({
-      sliding: true,
-    });
-  };
-
   return (
     <div>
       {/* Visual Image */}
@@ -283,41 +252,6 @@ function LandingPage() {
         <div style={{ margin: '8rem 0' }}>
           <h2 style={{ marginBottom: '1.5rem' }}>Discount</h2>
           <ProductsList products={exampleDiscountedProducts} />
-        </div>
-
-        {/* Weekly hot keywords */}
-        <div style={{ margin: '8rem 0' }}>
-          <h2 style={{ marginBottom: '1.5rem' }}>Weekly Hot Keywords</h2>
-
-          <div className="keywords_box">
-            <Icon
-              type="left"
-              onClick={onClickLeft}
-              className="keywords_button left"
-            />
-            <ul
-              className="main_list keywords"
-              ref={keywordsList}
-              style={{
-                left: keywordSlide.sliding ? 'unset' : '0',
-                right: keywordSlide.sliding ? '0' : 'unset',
-              }}
-            >
-              {keywordsArray.map((item) => (
-                <li key={item.id}>
-                  <span>
-                    {item.keyword}
-                    {item.id}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <Icon
-              type="right"
-              onClick={onClickRight}
-              className="keywords_button right"
-            />
-          </div>
         </div>
       </div>
     </div>

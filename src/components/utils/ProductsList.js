@@ -1,110 +1,117 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { Icon } from 'antd';
 
-function CreateProducts({ products }) {
+function CreateProducts({ products, onRemove }) {
+  const Ul = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  `;
+  const Li = styled.li`
+    position: relative;
+    width: 300px;
+    margin: 0 5px 60px;
+    cursor: pointer;
+
+    &:hover .wishlist {
+      display: block;
+    }
+  `;
+  const Name = styled.p`
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.65);
+  `;
+  const Price = styled.p`
+    margin-top: -0.5rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.65);
+  `;
+  const Text = styled.p`
+    margin-top: -0.5rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.65);
+  `;
+  const Discount = styled.div`
+    .rate {
+      font-size: 1rem;
+      color: #fa5252;
+      font-weight: bold;
+    }
+    .discount {
+      font-size: 1rem;
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .pre_discount {
+      display: block;
+      margin-top: 0.15rem;
+      color: #868e96;
+      text-decoration: line-through;
+    }
+  `;
+  const Likes = styled.div`
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.65);
+  `;
+  const Wishlist = styled.div`
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 40px;
+    color: #fff;
+    z-index: 5;
+  `;
+
   return (
-    <ul
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-      }}
-    >
+    <Ul>
       {products.map((product) => (
         <Link to="/product/:productId">
-          <li
-            key={product.id}
-            style={{ width: '300px', margin: '0 5px 60px', cursor: 'pointer' }}
-          >
+          <Li key={product.id}>
             {product.image && (
               <img
                 src={product.image}
                 style={{ width: '300px', height: '370px' }}
               />
             )}
-            {product.name && (
-              <p
-                style={{
-                  marginTop: '0.75rem',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  color: 'rgba(0,0,0,0.65)',
-                }}
-              >
-                {product.name}
-              </p>
-            )}
-            {product.price && (
-              <p
-                style={{
-                  marginTop: '-0.5rem',
-                  fontSize: '1rem',
-                  color: 'rgba(0,0,0,0.65)',
-                }}
-              >
-                {product.price}
-              </p>
-            )}
-            {product.text && (
-              <p
-                style={{
-                  marginTop: '-0.5rem',
-                  fontSize: '1rem',
-                  color: 'rgba(0,0,0,0.65)',
-                }}
-              >
-                {product.text}
-              </p>
-            )}
+            {product.name && <Name>{product.name}</Name>}
+            {product.price && <Price>{product.price}</Price>}
+            {product.text && <Text>{product.text}</Text>}
             {product.discount && (
-              <div>
-                <span
-                  style={{
-                    fontSize: '1rem',
-                    color: '#fa5252',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {product.discountRate} &nbsp;
-                </span>
-                <span style={{ fontSize: '1rem', color: 'rgba(0,0,0,0.65)' }}>
-                  {product.discount}
-                </span>
-                <span
-                  style={{
-                    display: 'block',
-                    marginTop: '0.15rem',
-                    color: '#868e96',
-                    textDecoration: 'line-through',
-                  }}
-                >
-                  {product.cost}
-                </span>
-              </div>
+              <Discount>
+                <span className="rate">{product.discountRate} &nbsp;</span>
+                <span className="discount">{product.discount}</span>
+                <span className="pre_discount">{product.pre_discount}</span>
+              </Discount>
             )}
             {product.likes && (
-              <div>
-                <div
-                  style={{
-                    marginTop: '2rem',
-                    fontSize: '1rem',
-                    color: 'rgba(0,0,0,0.65)',
-                  }}
-                >
-                  <span style={{ marginRight: '1rem' }}>
-                    <Icon type="heart" /> {product.likes}
-                  </span>
-                  <span>
-                    <Icon type="message" /> {product.reviews}
-                  </span>
-                </div>
-              </div>
+              <Likes>
+                <span style={{ marginRight: '1rem' }}>
+                  <Icon type="heart" /> {product.likes}
+                </span>
+                <span>
+                  <Icon type="message" /> {product.reviews}
+                </span>
+              </Likes>
             )}
-          </li>
+            {product.wishlist && (
+              <Wishlist
+                className="wishlist"
+                onClick={() => onRemove(product.id)}
+              >
+                <Icon type="close" />
+              </Wishlist>
+            )}
+          </Li>
         </Link>
       ))}
-    </ul>
+    </Ul>
   );
 }
 

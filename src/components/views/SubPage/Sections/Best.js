@@ -23,14 +23,8 @@ const Best = () => {
   createProducts();
 
   return (
-    <div
-      style={{
-        width: '80%',
-        margin: '0 auto',
-        marginTop: '-6px',
-      }}
-    >
-      <h2 style={{ margin: '50px 5px 30px' }}>Best</h2>
+    <div>
+      <h2 style={{ margin: '70px 5px 30px' }}>Best</h2>
 
       <div
         style={{

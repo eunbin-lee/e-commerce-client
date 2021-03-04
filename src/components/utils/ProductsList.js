@@ -72,8 +72,8 @@ function CreateProducts({ products, onRemove }) {
   return (
     <Ul>
       {products.map((product) => (
-        <Link to="/product/:productId">
-          <Li key={product.id}>
+        <Li key={product.id}>
+          <Link to="/product/:productId">
             {product.image && (
               <img
                 src={product.image}
@@ -100,16 +100,14 @@ function CreateProducts({ products, onRemove }) {
                 </span>
               </Likes>
             )}
-            {product.wishlist && (
-              <Wishlist
-                className="wishlist"
-                onClick={() => onRemove(product.id)}
-              >
-                <Icon type="close" />
-              </Wishlist>
-            )}
-          </Li>
-        </Link>
+          </Link>
+
+          {product.wishlist && (
+            <Wishlist className="wishlist" onClick={() => onRemove(product.id)}>
+              <Icon type="close" />
+            </Wishlist>
+          )}
+        </Li>
       ))}
     </Ul>
   );

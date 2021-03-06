@@ -74,17 +74,29 @@ const MyCartPage = () => {
     }
   `;
 
-  //상품 전체 선택
-  const onSelectAll = () => {
-    setProducts(products.map((product) => ({ ...product, checked: true })));
+  //상품 선택
+  const [checked, setChecked] = useState({
+    all: false,
+  });
+  const onCheckAll = () => {
+    setChecked({
+      all: !checked.all,
+    });
+    setProducts(
+      products.map((product) => ({ ...product, checked: !product.checked })),
+    );
   };
-  //상품 개별 선택
-  const onSelectProduct = (id) => {
+  const onCheckProduct = (id) => {
     setProducts(
       products.map((product) =>
         product.id === id ? { ...product, checked: !product.checked } : product,
       ),
     );
+  };
+
+  //상품 삭제
+  const onRemove = (id) => {
+    setProducts(products.filter((product) => product.id !== id));
   };
 
   return (
@@ -113,7 +125,11 @@ const MyCartPage = () => {
         }}
       >
         <Table>
-          <Checkbox style={{ width: '5%' }} onClick={onSelectAll} />
+          <Checkbox
+            style={{ width: '5%' }}
+            onClick={onCheckAll}
+            checked={checked.all}
+          />
           <div style={{ width: '23%' }}>상품 정보</div>
           <div style={{ width: '12%' }}>카테고리</div>
           <div style={{ width: '12%' }}>재고수량</div>
@@ -129,7 +145,7 @@ const MyCartPage = () => {
               <Checkbox
                 style={{ width: '5%', textAlign: 'center' }}
                 checked={product.checked}
-                onClick={() => onSelectProduct(product.no)}
+                onClick={() => onCheckProduct(product.id)}
               />
 
               {/* 상품 정보 */}
@@ -219,7 +235,11 @@ const MyCartPage = () => {
                   <Button style={{ fontSize: '0.75rem' }}>수정</Button>
                 </p>
                 <p style={{ margin: '2.5px 0' }}>
-                  <Button type="primary" style={{ fontSize: '0.75rem' }}>
+                  <Button
+                    type="primary"
+                    style={{ fontSize: '0.75rem' }}
+                    onClick={() => onRemove(product.id)}
+                  >
                     삭제
                   </Button>
                 </p>

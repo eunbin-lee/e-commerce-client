@@ -113,7 +113,9 @@ function ProductInfo(props) {
                   <Icon
                     type="minus"
                     style={{ cursor: 'pointer' }}
-                    onClick={() => onDecrease(option.id)}
+                    onClick={
+                      option.quantity > 1 ? () => onDecrease(option.id) : null
+                    }
                   />
                   <input
                     type="text"

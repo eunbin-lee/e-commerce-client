@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Button, Checkbox, Icon } from 'antd';
 
@@ -22,8 +22,9 @@ const MyCartPage = () => {
       name: 'product2',
       option: 'option3',
       quantity: 2,
+      discountRate: 10,
       price: 20000,
-      delivery: 2500,
+      delivery: 0,
       checked: false,
     },
   ]);
@@ -50,34 +51,54 @@ const MyCartPage = () => {
       padding: 0;
     }
   `;
-
-  //상품 전체 선택
-  const onSelectAll = () => {
-    setMyCart(myCart.map((item) => ({ ...item, checked: true })));
-  };
-  //상품 개별 선택
-  const onSelectItem = (id) => {
+  //상품 선택
+  const [checked, setChecked] = useState({
+    all: false,
+  });
+  const onCheckAll = useCallback(() => {
+    setChecked({
+      all: !checked.all,
+    });
     setMyCart(
-      myCart.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item,
-      ),
+      myCart.map((product) => ({ ...product, checked: !product.checked })),
     );
-  };
+  }, [myCart, checked]);
+  const onCheckProduct = useCallback(
+    (id) => {
+      setMyCart(
+        myCart.map((product) =>
+          product.id === id
+            ? { ...product, checked: !product.checked }
+            : product,
+        ),
+      );
+    },
+    [myCart],
+  );
 
   //상품 수량
   const onIncrease = (id) => {
     setMyCart(
-      myCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      myCart.map((product) =>
+        product.id === id
+          ? { ...product, quantity: product.quantity + 1 }
+          : product,
       ),
     );
   };
   const onDecrease = (id) => {
     setMyCart(
-      myCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+      myCart.map((product) =>
+        product.id === id
+          ? { ...product, quantity: product.quantity - 1 }
+          : product,
       ),
     );
+  };
+
+  //상품 삭제
+  const onRemove = (id) => {
+    setMyCart(myCart.filter((product) => product.id !== id));
   };
 
   return (
@@ -91,31 +112,40 @@ const MyCartPage = () => {
         }}
       >
         <Table>
-          <Checkbox style={{ width: '7%' }} onClick={onSelectAll} />
+          <Checkbox
+            style={{ width: '7%' }}
+            onClick={onCheckAll}
+            checked={checked.all}
+          />
           <div style={{ width: '48%' }}>상품 정보</div>
           <div style={{ width: '15%' }}>수량</div>
           <div style={{ width: '15%' }}>주문금액</div>
           <div style={{ width: '15%' }}>배송비</div>
         </Table>
-        {myCart.map((item) => (
+        {myCart.map((product) => (
           <>
             <TableRow>
+              {/* 체크박스 */}
               <Checkbox
                 style={{ width: '7%', textAlign: 'center' }}
-                checked={item.checked}
-                onClick={() => onSelectItem(item.id)}
+                checked={product.checked}
+                onClick={() => onCheckProduct(product.id)}
               />
+
+              {/* 상품 정보 */}
               <div
                 style={{ width: '48%', display: 'flex', alignItems: 'center' }}
               >
-                <img src={item.image} width="100px" height="100px" />
+                <img src={product.image} width="100px" height="100px" />
                 <div style={{ marginLeft: '15px' }}>
-                  <p style={{ fontWeight: 'bold' }}>{item.name}</p>
+                  <p style={{ fontWeight: 'bold' }}>{product.name}</p>
                   <p style={{ fontSize: '0.9rem', color: '#868e96' }}>
-                    옵션 : {item.option}
+                    옵션 : {product.option}
                   </p>
                 </div>
               </div>
+
+              {/* 수량 */}
               <div
                 style={{
                   width: '15%',
@@ -128,11 +158,13 @@ const MyCartPage = () => {
                 <Icon
                   type="minus"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => onDecrease(item.id)}
+                  onClick={
+                    product.quantity > 1 ? () => onDecrease(product.id) : null
+                  }
                 />
                 <input
                   type="text"
-                  value={item.quantity}
+                  value={product.quantity}
                   style={{
                     width: '30px',
                     textAlign: 'center',
@@ -143,30 +175,70 @@ const MyCartPage = () => {
                 <Icon
                   type="plus"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => onIncrease(item.id)}
+                  onClick={() => onIncrease(product.id)}
                 />
               </div>
+
+              {/* 주문금액 */}
               <div style={{ width: '15%', textAlign: 'center' }}>
-                <p>{item.price}원</p>
-                <p
-                  style={{
-                    marginTop: '5px',
-                    fontSize: '0.8rem',
-                    color: '#adb5bd',
-                  }}
-                >
-                  적립금 {item.price * 0.01}
-                </p>
+                {product.discountRate > 0 ? (
+                  <>
+                    <p>
+                      <span style={{ color: '#fa5252', fontWeight: 'bold' }}>
+                        {product.discountRate}%{' '}
+                      </span>
+                      {product.price * (1 - product.discountRate * 0.01)}원
+                    </p>
+                    <p
+                      style={{
+                        fontSize: '0.75rem',
+                        color: '#868e96',
+                        textDecoration: 'line-through',
+                      }}
+                    >
+                      {product.price}원
+                    </p>
+                    <p
+                      style={{
+                        marginTop: '5px',
+                        fontSize: '0.8rem',
+                        color: '#adb5bd',
+                      }}
+                    >
+                      적립금{' '}
+                      {product.price * (1 - product.discountRate * 0.01) * 0.01}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>{product.price}원</p>
+                    <p
+                      style={{
+                        marginTop: '5px',
+                        fontSize: '0.8rem',
+                        color: '#adb5bd',
+                      }}
+                    >
+                      적립금 {product.price * 0.01}
+                    </p>
+                  </>
+                )}
               </div>
+
+              {/* 배송비 */}
               <div style={{ width: '15%', textAlign: 'center' }}>
-                <p>{item.delivery}원</p>
-                <p style={{ marginTop: '5px', fontSize: '0.95rem' }}>조건</p>
+                {product.delivery > 0 ? (
+                  <p>{product.delivery}원</p>
+                ) : (
+                  <p>무료배송</p>
+                )}
               </div>
             </TableRow>
           </>
         ))}
       </div>
 
+      {/* 결제금액 */}
       <div
         style={{
           display: 'flex',
@@ -174,8 +246,7 @@ const MyCartPage = () => {
           margin: '20px 0',
         }}
       >
-        <Button>선택상품 삭제</Button>
-        <Button style={{ marginLeft: '5px' }}>선택상품 계산</Button>
+        <Button onClick={() => onRemove()}>선택상품 삭제</Button>
       </div>
 
       <div
@@ -200,7 +271,14 @@ const MyCartPage = () => {
           }}
         >
           <div style={{ width: '32.6%' }}>
-            <p>50,000원</p>
+            <p>
+              {myCart.reduce(
+                (acc, cur) =>
+                  acc.price * acc.quantity +
+                  cur.price * (1 - cur.discountRate * 0.01) * cur.quantity,
+              )}
+              원
+            </p>
             <p
               style={{
                 fontSize: '0.85rem',
@@ -208,16 +286,26 @@ const MyCartPage = () => {
                 color: '#adb5bd',
               }}
             >
-              총 2개
+              {myCart.reduce((acc, cur) => acc.quantity + cur.quantity)}개
             </p>
           </div>
           <Icon type="plus" style={{ width: '1%' }} />
-          <div style={{ width: '32.6%' }}>2,500원</div>
+          <div style={{ width: '32.6%' }}>
+            {myCart.reduce((acc, cur) => acc.delivery + cur.delivery)}원
+          </div>
           <Icon
             type="pause"
             style={{ width: '1%', transform: 'rotate(90deg)' }}
           />
-          <div style={{ width: '32.6%' }}>52,500원</div>
+          <div style={{ width: '32.6%' }}>
+            {myCart.reduce(
+              (acc, cur) =>
+                acc.price * acc.quantity +
+                cur.price * (1 - cur.discountRate * 0.01) * cur.quantity +
+                (acc.delivery + cur.delivery),
+            )}
+            원
+          </div>
         </TableRow>
       </div>
 

@@ -48,6 +48,9 @@ function RegisterPage(props) {
         email: Yup.string()
           .email('Email is invalid')
           .required('Email is required'),
+        userID: Yup.string()
+          .min(4, 'ID must be at least 4 characters')
+          .required('ID is required'),
         password: Yup.string()
           .min(6, 'Password must be at least 6 characters')
           .required('Password is required'),
@@ -60,6 +63,7 @@ function RegisterPage(props) {
           let dataToSubmit = {
             member: values.member,
             email: values.email,
+            userID: values.userID,
             password: values.password,
             name: values.name,
             lastname: values.lastname,
@@ -165,7 +169,7 @@ function RegisterPage(props) {
               >
                 <Input
                   id="email"
-                  placeholder="Enter your Email"
+                  placeholder="Enter your email"
                   type="email"
                   value={values.email}
                   onChange={handleChange}
@@ -178,6 +182,32 @@ function RegisterPage(props) {
                 />
                 {errors.email && touched.email && (
                   <div className="input-feedback">{errors.email}</div>
+                )}
+              </Form.Item>
+
+              <Form.Item
+                required
+                label="userID"
+                hasFeedback
+                validateStatus={
+                  errors.userID && touched.userID ? 'error' : 'success'
+                }
+              >
+                <Input
+                  id="userID"
+                  placeholder="Enter your ID"
+                  type="text"
+                  value={values.userID}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.userID && touched.userID
+                      ? 'text-input error'
+                      : 'text-input'
+                  }
+                />
+                {errors.userID && touched.userID && (
+                  <div className="input-feedback">{errors.userID}</div>
                 )}
               </Form.Item>
 

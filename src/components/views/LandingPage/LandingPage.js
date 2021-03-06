@@ -202,7 +202,7 @@ function LandingPage() {
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
         {/* Search */}
-        <div
+        {/* <div
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
@@ -210,7 +210,7 @@ function LandingPage() {
           }}
         >
           <SearchFeature refreshFunction={updateSearchTerms} />
-        </div>
+        </div> */}
 
         {/* Recommendation Products */}
         <div style={{ margin: '2rem 0' }}>

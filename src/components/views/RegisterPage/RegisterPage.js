@@ -35,7 +35,7 @@ function RegisterPage(props) {
   return (
     <Formik
       initialValues={{
-        member: 'general',
+        role: 'general',
         email: '',
         lastName: '',
         name: '',
@@ -61,7 +61,7 @@ function RegisterPage(props) {
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           let dataToSubmit = {
-            member: values.member,
+            role: values.role,
             email: values.email,
             userID: values.userID,
             password: values.password,
@@ -102,9 +102,9 @@ function RegisterPage(props) {
               {...formItemLayout}
               onSubmit={handleSubmit}
             >
-              <Form.Item required label="Member">
+              <Form.Item required label="Role">
                 <select
-                  id="Member"
+                  id="role"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   style={{

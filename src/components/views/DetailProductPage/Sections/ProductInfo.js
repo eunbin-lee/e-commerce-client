@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Descriptions, Select, Icon } from 'antd';
+import { Button, Select, Icon } from 'antd';
 
 function ProductInfo(props) {
-  const [Product, setProduct] = useState({});
+  const { Option } = Select;
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     setProduct(props.detail);
@@ -13,7 +14,6 @@ function ProductInfo(props) {
   };
 
   //상품 옵션
-  const { Option } = Select;
   const optionList = [
     { id: 1, title: 'option1', quantity: 1 },
     { id: 2, title: 'option2', quantity: 1 },
@@ -52,33 +52,33 @@ function ProductInfo(props) {
 
   return (
     <div>
-      {/* <Descriptions title="PRODUCT">
-        <Descriptions.Item label="Price" span={3}>
-          {' '}
-          {Product.price}
-        </Descriptions.Item>
-        <Descriptions.Item label="Sold">{Product.sold}</Descriptions.Item>
-        <Descriptions.Item label="View"> {Product.views}</Descriptions.Item>
-        <Descriptions.Item label="Description">
-          {' '}
-          {Product.description}
-        </Descriptions.Item>
-      </Descriptions> */}
-
       <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', padding: '0 8px' }}>
-        PRODUCT {Product.title}
+        상품명 {product.title}
       </h3>
 
       <table style={{ border: 'hidden', marginTop: '30px' }}>
         <tr>
-          <td colSpan="2" style={{ fontSize: '1rem', padding: '0 8px 40px' }}>
-            {Product.price} 00000￦
+          <td colSpan="2" style={{ fontSize: '1rem', padding: '0 8px 80px' }}>
+            00000원
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: '#fff' }}>
+          <td
+            colSpan="2"
+            style={{
+              border: 'hidden',
+              fontSize: '0.75rem',
+              padding: '0 8px 30px',
+            }}
+          >
+            <p>적립금 000p</p>
+            <p>배송비 0000원</p>
           </td>
         </tr>
         <tr style={{ backgroundColor: '#fff' }}>
           <td colSpan="2" style={{ border: 'hidden' }}>
             <Select defaultValue="option" style={{ width: '100%' }}>
-              <Option value="option">- Please select option -</Option>
+              <Option value="option">- 옵션을 선택해 주세요 -</Option>
               {optionList.map((option) => (
                 <Option value={option.title} onClick={() => onClick(option.id)}>
                   {option.title}
@@ -150,7 +150,7 @@ function ProductInfo(props) {
         ))}
         <tr style={{ backgroundColor: '#fff' }}>
           <td colSpan="2" style={{ paddingTop: '25px', textAlign: 'right' }}>
-            Total Price
+            총 구매금액
           </td>
         </tr>
         <tr style={{ backgroundColor: '#fff' }}>
@@ -163,9 +163,10 @@ function ProductInfo(props) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
+                fontSize: '0.9rem',
               }}
             >
-              Buy Now
+              바로 구매하기
             </Button>
             <div
               style={{
@@ -176,38 +177,14 @@ function ProductInfo(props) {
             >
               <Button
                 size="large"
-                style={{ width: '50%', marginRight: '5px' }}
+                style={{ width: '50%', marginRight: '5px', fontSize: '0.9rem' }}
                 onClick={addToCarthandler}
               >
-                Add to Cart
+                장바구니 담기
               </Button>
-              <Button size="large" style={{ width: '50%' }}>
-                Wish List
+              <Button size="large" style={{ width: '50%', fontSize: '0.9rem' }}>
+                위시리스트
               </Button>
-            </div>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#fff' }}>
-          <td colSpan="2">
-            <div
-              style={{
-                marginTop: '10px',
-                borderTop: '1px solid #dee2e6',
-              }}
-            >
-              <div
-                style={{
-                  padding: '12px 5px',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                }}
-              >
-                Product Information
-              </div>
-
-              <div>- This product is really good and ...</div>
-              <div>- This product is really good and ...</div>
-              <div>- This product is really good and ...</div>
             </div>
           </td>
         </tr>

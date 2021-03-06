@@ -21,7 +21,7 @@ function CreateProducts({ products, onRemove }) {
   `;
   const Name = styled.p`
     margin-top: 0.75rem;
-    font-size: 1.1rem;
+    font-size: 1.075rem;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.65);
   `;
@@ -45,7 +45,7 @@ function CreateProducts({ products, onRemove }) {
       font-size: 1rem;
       color: rgba(0, 0, 0, 0.65);
     }
-    .pre_discount {
+    .price {
       display: block;
       margin-top: 0.15rem;
       color: #868e96;
@@ -81,13 +81,17 @@ function CreateProducts({ products, onRemove }) {
               />
             )}
             {product.name && <Name>{product.name}</Name>}
-            {product.price && <Price>{product.price}</Price>}
+            {product.price && !product.discountRate && (
+              <Price>{product.price}원</Price>
+            )}
             {product.text && <Text>{product.text}</Text>}
-            {product.discount && (
+            {product.discountRate && (
               <Discount>
-                <span className="rate">{product.discountRate} &nbsp;</span>
-                <span className="discount">{product.discount}</span>
-                <span className="pre_discount">{product.pre_discount}</span>
+                <span className="rate">{product.discountRate}% </span>
+                <span className="discount">
+                  {product.price * (1 - product.discountRate * 0.01)}원
+                </span>
+                <span className="price">{product.price}원</span>
               </Discount>
             )}
             {product.likes && (

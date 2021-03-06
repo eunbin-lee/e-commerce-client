@@ -7,7 +7,7 @@ const MyCartPage = () => {
     'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg';
   const [myCart, setMyCart] = useState([
     {
-      no: 1,
+      id: 1,
       image: imageUrl,
       name: 'product1',
       option: 'option1',
@@ -17,7 +17,7 @@ const MyCartPage = () => {
       checked: false,
     },
     {
-      no: 2,
+      id: 2,
       image: imageUrl,
       name: 'product2',
       option: 'option3',
@@ -33,7 +33,7 @@ const MyCartPage = () => {
     display: flex;
     align-items: center;
     padding: 20px 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     letter-spacing: -1px;
@@ -42,7 +42,7 @@ const MyCartPage = () => {
     display: flex;
     align-items: center;
     padding: 15px 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     letter-spacing: -1px;
     border-top: 1px solid #adb5bd;
     p {
@@ -56,26 +56,26 @@ const MyCartPage = () => {
     setMyCart(myCart.map((item) => ({ ...item, checked: true })));
   };
   //상품 개별 선택
-  const onSelectItem = (no) => {
+  const onSelectItem = (id) => {
     setMyCart(
       myCart.map((item) =>
-        item.no === no ? { ...item, checked: !item.checked } : item,
+        item.id === id ? { ...item, checked: !item.checked } : item,
       ),
     );
   };
 
   //상품 수량
-  const onIncrease = (no) => {
+  const onIncrease = (id) => {
     setMyCart(
       myCart.map((item) =>
-        item.no === no ? { ...item, quantity: item.quantity + 1 } : item,
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
       ),
     );
   };
-  const onDecrease = (no) => {
+  const onDecrease = (id) => {
     setMyCart(
       myCart.map((item) =>
-        item.no === no ? { ...item, quantity: item.quantity - 1 } : item,
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
       ),
     );
   };
@@ -103,7 +103,7 @@ const MyCartPage = () => {
               <Checkbox
                 style={{ width: '7%', textAlign: 'center' }}
                 checked={item.checked}
-                onClick={() => onSelectItem(item.no)}
+                onClick={() => onSelectItem(item.id)}
               />
               <div
                 style={{ width: '48%', display: 'flex', alignItems: 'center' }}
@@ -128,7 +128,7 @@ const MyCartPage = () => {
                 <Icon
                   type="minus"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => onDecrease(item.no)}
+                  onClick={() => onDecrease(item.id)}
                 />
                 <input
                   type="text"
@@ -143,7 +143,7 @@ const MyCartPage = () => {
                 <Icon
                   type="plus"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => onIncrease(item.no)}
+                  onClick={() => onIncrease(item.id)}
                 />
               </div>
               <div style={{ width: '15%', textAlign: 'center' }}>

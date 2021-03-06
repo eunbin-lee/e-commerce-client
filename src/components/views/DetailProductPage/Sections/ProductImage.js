@@ -20,10 +20,14 @@ function ProductImage(props) {
   }, [props.detail]);
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       {/* <ImageGallery items={Images} /> */}
       <img
-        style={{ width: '100%', height: '500px', padding: '0 20px' }}
+        style={{
+          minWidth: '100px',
+          maxWidth: '500px',
+          height: '500px',
+        }}
         src="https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg"
       />
     </div>

@@ -14,9 +14,8 @@ const Discount = () => {
         image:
           'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg',
         name: `Discounted Product ${i}`,
-        discountRate: '10%',
-        discount: '00000￦',
-        pre_discount: '00000￦',
+        discountRate: 10,
+        price: 20000,
         likes: '234',
         reviews: '10',
       });

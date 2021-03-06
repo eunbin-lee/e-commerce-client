@@ -13,25 +13,25 @@ function ProductDetails() {
       id: 1,
       image: imageUrl,
       name: 'Related Product 1',
-      price: '00000￦',
+      price: 20000,
     },
     {
       id: 2,
       image: imageUrl,
       name: 'Related Product 2',
-      price: '00000￦',
+      price: 20000,
     },
     {
       id: 3,
       image: imageUrl,
       name: 'Related Product 3',
-      price: '00000￦',
+      price: 20000,
     },
     {
       id: 4,
       image: imageUrl,
       name: 'Related Product 4',
-      price: '00000￦',
+      price: 20000,
     },
   ];
 
@@ -71,7 +71,6 @@ function ProductDetails() {
   ]);
 
   const onClickReview = (no) => {
-    console.log(reviews[no - 1]);
     setReviews(
       reviews.map((review) =>
         review.no === no
@@ -127,10 +126,10 @@ function ProductDetails() {
   };
 
   const [tabs, setTabs] = useState([
-    { id: 1, title: 'Details', content: content1(), selected: true },
-    { id: 2, title: 'Related', content: content2(), selected: false },
-    { id: 3, title: 'Reviews', content: content3(), selected: false },
-    { id: 4, title: 'Q & A', content: content4(), selected: false },
+    { id: 1, title: '상품 설명', content: content1(), selected: true },
+    { id: 2, title: '관련 상품', content: content2(), selected: false },
+    { id: 3, title: '리뷰', content: content3(), selected: false },
+    { id: 4, title: '상품 Q&A', content: content4(), selected: false },
   ]);
 
   const onSelectTab = (id) => {

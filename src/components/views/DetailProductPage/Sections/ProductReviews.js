@@ -12,7 +12,7 @@ function ProductReviews({ reviews, onClickReview }) {
           margin: '5px',
         }}
       >
-        <Button>Write</Button>
+        <Button>리뷰쓰기</Button>
       </div>
 
       <ul>
@@ -45,7 +45,7 @@ function ProductReviews({ reviews, onClickReview }) {
               <div style={{ float: 'right' }}>{review.date}</div>
             </div>
             <div style={{ position: 'relative', marginTop: '5px' }}>
-              <div style={{ color: '#adb5bd' }}>[option] {review.option}</div>
+              <div style={{ color: '#adb5bd' }}>[옵션] {review.option}</div>
               {review.clicked ? (
                 <>
                   <div

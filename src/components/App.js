@@ -7,6 +7,7 @@ import LoginPage from './views/LoginPage/LoginPage.js';
 import RegisterPage from './views/RegisterPage/RegisterPage.js';
 import NavBar from './views/NavBar/NavBar';
 import Footer from './views/Footer/Footer';
+import AdminPage from './views/AdminPage/AdminPage';
 import UploadProductPage from './views/UploadProductPage/UploadProductPage';
 import DetailProductPage from './views/DetailProductPage/DetailProductPage';
 // import CartPage from './views/CartPage/CartPage';
@@ -24,9 +25,10 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/admin" component={Auth(AdminPage, true)} />
           <Route
             exact
-            path="/product/upload"
+            path="/admin/upload"
             component={Auth(UploadProductPage, true)}
           />
           <Route exact path="/sub/best" component={Auth(SubPage, null)} />

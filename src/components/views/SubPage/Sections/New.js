@@ -13,9 +13,9 @@ const New = () => {
         id: i,
         image: `https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg`,
         name: `New Product ${i}`,
-        price: `00000￦`,
-        likes: `234`,
-        reviews: `10`,
+        price: 30000,
+        likes: 234,
+        reviews: 10,
       });
     }
     return products;

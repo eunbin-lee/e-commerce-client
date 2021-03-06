@@ -12,7 +12,7 @@ const ProductQnA = ({ qna }) => {
           margin: '5px',
         }}
       >
-        <Button>Write</Button>
+        <Button>Q&amp;A 쓰기</Button>
       </div>
 
       <ul>

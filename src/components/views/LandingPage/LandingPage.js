@@ -1,61 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Axios from 'axios';
-import { Icon, Tabs } from 'antd';
-import SearchFeature from './Sections/SearchFeature';
+import React from 'react';
+import { Tabs } from 'antd';
 import ProductsList from '../../utils/ProductsList';
 import VisualSlider from './Sections/VisualSlider';
 import './LandingPage.css';
 
 function LandingPage() {
-  const [Products, setProducts] = useState([]);
-  const [Skip, setSkip] = useState(0);
-  const [Limit, setLimit] = useState(8);
-  const [PostSize, setPostSize] = useState();
-  const [SearchTerms, setSearchTerms] = useState('');
-
-  const [Filters, setFilters] = useState({
-    continents: [],
-    price: [],
-  });
-
-  useEffect(() => {
-    const variables = {
-      skip: Skip,
-      limit: Limit,
-    };
-
-    getProducts(variables);
-  }, []);
-
-  const getProducts = (variables) => {
-    Axios.post('/api/product/getProducts', variables).then((response) => {
-      if (response.data.success) {
-        if (variables.loadMore) {
-          setProducts([...Products, ...response.data.products]);
-        } else {
-          setProducts(response.data.products);
-        }
-        setPostSize(response.data.postSize);
-      } else {
-        alert('Failed to fectch product datas');
-      }
-    });
-  };
-
-  const updateSearchTerms = (newSearchTerm) => {
-    const variables = {
-      skip: 0,
-      limit: Limit,
-      filters: Filters,
-      searchTerm: newSearchTerm,
-    };
-
-    setSkip(0);
-    setSearchTerms(newSearchTerm);
-
-    getProducts(variables);
-  };
-
   //example
   const imageUrl =
     'https://www.kingplastic.com/wp-content/uploads/2014/12/Charcoal-Gray-300x300.jpg';
@@ -290,7 +239,9 @@ function LandingPage() {
 
         {/* Recommendation Products */}
         <div style={{ margin: '8rem 0 4rem' }}>
-          <h2 style={{ marginBottom: '1.5rem' }}> Recommendation Products </h2>
+          <h2 style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
+            추천 상품
+          </h2>
           <ProductsList products={exampleProducts} />
         </div>
 
@@ -303,9 +254,10 @@ function LandingPage() {
                   margin: '0.5rem 0',
                   padding: '0 2.5rem',
                   fontSize: '1.5rem',
+                  fontWeight: 'bold',
                 }}
               >
-                New Products
+                새로 나온 상품
               </h2>
             }
             key="1"
@@ -314,8 +266,14 @@ function LandingPage() {
           </TabPane>
           <TabPane
             tab={
-              <h2 style={{ padding: '0 2.5rem', fontSize: '1.5rem' }}>
-                Hot Products
+              <h2
+                style={{
+                  padding: '0 2.5rem',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                인기 상품
               </h2>
             }
             key="2"
@@ -326,7 +284,9 @@ function LandingPage() {
 
         {/* Discounted Products */}
         <div style={{ margin: '4rem 0 8rem' }}>
-          <h2 style={{ marginBottom: '1.5rem' }}>Discount</h2>
+          <h2 style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
+            할인 상품
+          </h2>
           <ProductsList products={exampleDiscountedProducts} />
         </div>
       </div>

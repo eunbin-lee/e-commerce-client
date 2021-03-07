@@ -8,14 +8,15 @@ import RegisterPage from './views/RegisterPage/RegisterPage.js';
 import NavBar from './views/NavBar/NavBar';
 import Footer from './views/Footer/Footer';
 import AdminPage from './views/AdminPage/AdminPage';
-import UploadProductPage from './views/UploadProductPage/UploadProductPage';
+import UploadProduct from './views/AdminPage/Sections/UploadProduct';
+import UpdateProduct from './views/AdminPage/Sections/UpdateProduct';
+// import UploadProductPage from './views/UploadProductPage/UploadProductPage';
 import DetailProductPage from './views/DetailProductPage/DetailProductPage';
 // import CartPage from './views/CartPage/CartPage';
 import SubPage from './views/SubPage/SubPage';
 import MyCartPage from './views/CartPage/MyCartPage';
 import WishlistPage from './views/WishlistPage/WishlistPage';
 import HistoryPage from './views/HistoryPage/HistoryPage';
-
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -29,7 +30,12 @@ function App() {
           <Route
             exact
             path="/admin/upload"
-            component={Auth(UploadProductPage, true)}
+            component={Auth(UploadProduct, true)}
+          />
+          <Route
+            exact
+            path="/admin/update"
+            component={Auth(UpdateProduct, true)}
           />
           <Route exact path="/sub/best" component={Auth(SubPage, null)} />
           <Route exact path="/sub/new" component={Auth(SubPage, null)} />

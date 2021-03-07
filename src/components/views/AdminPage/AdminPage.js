@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, Checkbox, Select, Icon } from 'antd';
+import { Button, Checkbox, Select, Icon, Modal } from 'antd';
+// import UploadProduct from './Sections/UploadProduct';
+// import UpdateProduct from './Sections/UpdateProduct';
+import RecommendProduct from './Sections/RecommendProduct';
 
 const MyCartPage = () => {
   const { Option } = Select;
@@ -19,7 +23,7 @@ const MyCartPage = () => {
       discountRate: 10,
       delivery: 0,
       checked: false,
-      recommendation: false,
+      recommend: false,
       delete: false,
     },
     {
@@ -33,7 +37,7 @@ const MyCartPage = () => {
       discountRate: 0,
       delivery: 0,
       checked: false,
-      recommendation: false,
+      recommend: false,
       delete: false,
     },
     {
@@ -46,7 +50,7 @@ const MyCartPage = () => {
       price: 35000,
       delivery: 2500,
       checked: false,
-      recommendation: true,
+      recommend: true,
       delete: false,
     },
   ]);
@@ -74,6 +78,13 @@ const MyCartPage = () => {
     }
   `;
 
+  //카테고리
+  const [CategoryValue, setCategoryValue] = useState('all');
+
+  const onChangeCategory = (e) => {
+    setCategoryValue(e.currentTarget.value);
+  };
+
   //상품 선택
   const [checked, setChecked] = useState({
     all: false,
@@ -99,6 +110,21 @@ const MyCartPage = () => {
     setProducts(products.filter((product) => product.id !== id));
   };
 
+  //추천 상품
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div style={{ width: '75%', margin: '3rem auto' }}>
       <h2 style={{ fontWeight: 'bold' }}>판매자 상품 관리</h2>
@@ -110,7 +136,7 @@ const MyCartPage = () => {
           margin: '1rem 0',
         }}
       >
-        <Select defaultValue="all" style={{ width: '150px' }}>
+        <Select defaultValue={'all'} style={{ width: '150px' }}>
           <Option value="all">All</Option>
           <Option value="best">Best</Option>
           <Option value="new">New</Option>
@@ -154,7 +180,7 @@ const MyCartPage = () => {
               >
                 <img src={product.image} width="100px" height="100px" />
                 <div style={{ marginLeft: '15px' }}>
-                  {product.recommendation ? (
+                  {product.recommend ? (
                     <p style={{ fontSize: '0.75rem', color: '#3e91f7' }}>
                       <Icon type="like" />
                       <span> 추천 상품</span>
@@ -173,8 +199,9 @@ const MyCartPage = () => {
                 }}
               >
                 <Select
-                  style={{ width: '50%' }}
+                  style={{ minWidth: '100px' }}
                   defaultValue={product.category}
+                  value={product.category}
                 >
                   <Option value="all">All</Option>
                   <Option value="best">Best</Option>
@@ -232,7 +259,9 @@ const MyCartPage = () => {
               {/* 선택 */}
               <div style={{ width: '12%', textAlign: 'center' }}>
                 <p style={{ margin: '2.5px 0' }}>
-                  <Button style={{ fontSize: '0.75rem' }}>수정</Button>
+                  <Button style={{ fontSize: '0.75rem' }}>
+                    <Link to="/admin/update">수정</Link>
+                  </Button>
                 </p>
                 <p style={{ margin: '2.5px 0' }}>
                   <Button
@@ -257,8 +286,22 @@ const MyCartPage = () => {
         }}
       >
         <div>
-          <Button>새 상품 등록</Button>
-          <Button style={{ marginLeft: '5px' }}>추천상품 관리</Button>
+          <Button>
+            <Link to="/admin/upload">상품 등록</Link>
+          </Button>
+          <Button style={{ marginLeft: '5px' }} onClick={showModal}>
+            추천상품 관리
+          </Button>
+          <Modal
+            title="추천상품"
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            okText="완료"
+            cancelText="취소"
+          >
+            <RecommendProduct products={products} />
+          </Modal>
         </div>
         <Button type="primary" style={{ marginLeft: '5px' }}>
           선택상품 삭제

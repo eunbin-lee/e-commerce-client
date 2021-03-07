@@ -51,30 +51,26 @@ const MyCartPage = () => {
       padding: 0;
     }
   `;
+
   //상품 선택
   const [checked, setChecked] = useState({
     all: false,
   });
-  const onCheckAll = useCallback(() => {
+  const onCheckAll = () => {
     setChecked({
       all: !checked.all,
     });
     setMyCart(
       myCart.map((product) => ({ ...product, checked: !product.checked })),
     );
-  }, [myCart, checked]);
-  const onCheckProduct = useCallback(
-    (id) => {
-      setMyCart(
-        myCart.map((product) =>
-          product.id === id
-            ? { ...product, checked: !product.checked }
-            : product,
-        ),
-      );
-    },
-    [myCart],
-  );
+  };
+  const onCheckProduct = (id) => {
+    setMyCart(
+      myCart.map((product) =>
+        product.id === id ? { ...product, checked: !product.checked } : product,
+      ),
+    );
+  };
 
   //상품 수량
   const onIncrease = (id) => {
@@ -114,8 +110,8 @@ const MyCartPage = () => {
         <Table>
           <Checkbox
             style={{ width: '7%' }}
+            checked={checked.All}
             onClick={onCheckAll}
-            checked={checked.all}
           />
           <div style={{ width: '48%' }}>상품 정보</div>
           <div style={{ width: '15%' }}>수량</div>
@@ -246,7 +242,7 @@ const MyCartPage = () => {
           margin: '20px 0',
         }}
       >
-        <Button onClick={() => onRemove(id)}>선택상품 삭제</Button>
+        <Button onClick={() => onRemove()}>선택상품 삭제</Button>
       </div>
 
       <div

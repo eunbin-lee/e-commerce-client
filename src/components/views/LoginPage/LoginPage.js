@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { loginUser } from '../../../_actions/user_actions';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -96,7 +96,9 @@ function LoginPage(props) {
         } = props;
         return (
           <div className="app">
-            <Title level={2}>Log In</Title>
+            <Title level={2} style={{ marginBottom: '1.5rem' }}>
+              Shop
+            </Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
               <Form.Item required>
                 <Input
@@ -104,7 +106,7 @@ function LoginPage(props) {
                   prefix={
                     <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                   }
-                  placeholder="Enter your ID"
+                  placeholder="아이디"
                   type="text"
                   value={values.userID}
                   onChange={handleChange}
@@ -126,7 +128,7 @@ function LoginPage(props) {
                   prefix={
                     <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                   }
-                  placeholder="Enter your password"
+                  placeholder="비밀번호"
                   type="password"
                   value={values.password}
                   onChange={handleChange}
@@ -164,26 +166,29 @@ function LoginPage(props) {
                   onChange={handleRememberMe}
                   checked={rememberMe}
                 >
-                  Remember me
+                  로그인 상태 유지
                 </Checkbox>
                 <a
                   className="login-form-forgot"
                   style={{ float: 'right' }}
                   onClick={showModal}
                 >
-                  forgot account
+                  계정 찾기
                 </a>
+
                 <Modal
-                  title="Having trouble signing in?"
+                  title="계정을 잊어버리셨나요?"
                   visible={isModalVisible}
                   onOk={handleOk}
                   onCancel={handleCancel}
+                  okText="확인"
+                  cancelText="취소"
                 >
-                  <p>Enter your email to get started.</p>
+                  <p>가입하셨던 이메일을 입력해 주세요.</p>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Your email"
+                    placeholder="이메일"
                     className={
                       errors.email && touched.email
                         ? 'text-input error'
@@ -194,6 +199,7 @@ function LoginPage(props) {
                     <div className="input-feedback">{errors.email}</div>
                   )}
                 </Modal>
+
                 <div>
                   <Button
                     type="primary"
@@ -203,14 +209,17 @@ function LoginPage(props) {
                     disabled={isSubmitting}
                     onSubmit={handleSubmit}
                   >
-                    Log in
+                    로그인
                   </Button>
                 </div>
-                Or <a href="/register">register now!</a>
+
+                <Button style={{ minWidth: '100%' }}>
+                  <Link to="/register">회원가입</Link>
+                </Button>
               </Form.Item>
 
               <div className="sns">
-                <div style={{ marginTop: '1.25rem' }}>
+                <div style={{ marginTop: '2rem' }}>
                   <button className="kakao">카카오 로그인</button>
                   <button className="naver">네이버 로그인</button>
                 </div>

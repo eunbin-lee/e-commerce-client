@@ -43,20 +43,20 @@ function RegisterPage(props) {
         confirmPassword: '',
       }}
       validationSchema={Yup.object().shape({
-        name: Yup.string().required('Name is required'),
-        lastName: Yup.string().required('Last Name is required'),
+        name: Yup.string().required('성명을 입력해 주세요'),
+        // lastName: Yup.string().required('Last Name is required'),
         email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
+          .email('이메일을 올바르게 입력해 주세요')
+          .required('이메일을 입력해 주세요'),
         userID: Yup.string()
-          .min(4, 'ID must be at least 4 characters')
-          .required('ID is required'),
+          .min(4, '아이디를 4자리 이상 입력해 주세요')
+          .required('아이디를 입력해 주세요'),
         password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required'),
+          .min(6, '비밀번호를 6자리 이상 입력해 주세요')
+          .required('비밀번호를 입력해 주세요'),
         confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Passwords must match')
-          .required('Confirm Password is required'),
+          .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다')
+          .required('비밀번호를 확인해 주세요'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -96,13 +96,15 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-            <h2>Sign up</h2>
+            <h2 style={{ marginBottom: '2rem', fontWeight: 'bold' }}>
+              회원가입
+            </h2>
             <Form
               style={{ minWidth: '375px' }}
               {...formItemLayout}
               onSubmit={handleSubmit}
             >
-              <Form.Item required label="Role">
+              <Form.Item required label="구분">
                 <select
                   id="role"
                   onChange={handleChange}
@@ -115,17 +117,17 @@ function RegisterPage(props) {
                   }}
                 >
                   <option value="general" selected>
-                    General
+                    일반
                   </option>
-                  <option value="seller">Seller</option>
+                  <option value="seller">판매자</option>
                 </select>
               </Form.Item>
 
-              <Form.Item required label="Name">
+              <Form.Item required label="성명">
                 <Input
                   id="name"
-                  placeholder="Enter your name"
                   type="text"
+                  placeholder="홍길동"
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -140,7 +142,7 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Last Name">
+              {/* <Form.Item required label="Last Name">
                 <Input
                   id="lastName"
                   placeholder="Enter your Last Name"
@@ -157,11 +159,11 @@ function RegisterPage(props) {
                 {errors.lastName && touched.lastName && (
                   <div className="input-feedback">{errors.lastName}</div>
                 )}
-              </Form.Item>
+              </Form.Item> */}
 
               <Form.Item
                 required
-                label="Email"
+                label="이메일"
                 hasFeedback
                 validateStatus={
                   errors.email && touched.email ? 'error' : 'success'
@@ -169,7 +171,7 @@ function RegisterPage(props) {
               >
                 <Input
                   id="email"
-                  placeholder="Enter your email"
+                  placeholder="shop@example.com"
                   type="email"
                   value={values.email}
                   onChange={handleChange}
@@ -187,7 +189,7 @@ function RegisterPage(props) {
 
               <Form.Item
                 required
-                label="userID"
+                label="아이디"
                 hasFeedback
                 validateStatus={
                   errors.userID && touched.userID ? 'error' : 'success'
@@ -195,7 +197,7 @@ function RegisterPage(props) {
               >
                 <Input
                   id="userID"
-                  placeholder="Enter your ID"
+                  placeholder="4자리 이상"
                   type="text"
                   value={values.userID}
                   onChange={handleChange}
@@ -213,7 +215,7 @@ function RegisterPage(props) {
 
               <Form.Item
                 required
-                label="Password"
+                label="비밀번호"
                 hasFeedback
                 validateStatus={
                   errors.password && touched.password ? 'error' : 'success'
@@ -221,7 +223,7 @@ function RegisterPage(props) {
               >
                 <Input
                   id="password"
-                  placeholder="Enter your password"
+                  placeholder="6자리 이상"
                   type="password"
                   value={values.password}
                   onChange={handleChange}
@@ -237,10 +239,9 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
+              <Form.Item required label="비밀번호 확인" hasFeedback>
                 <Input
                   id="confirmPassword"
-                  placeholder="Enter your confirmPassword"
                   type="password"
                   value={values.confirmPassword}
                   onChange={handleChange}
@@ -261,8 +262,9 @@ function RegisterPage(props) {
                   onClick={handleSubmit}
                   type="primary"
                   disabled={isSubmitting}
+                  style={{ margin: '20px 0' }}
                 >
-                  Submit
+                  완료
                 </Button>
               </Form.Item>
             </Form>

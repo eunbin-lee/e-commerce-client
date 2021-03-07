@@ -37,7 +37,10 @@ function RightMenu(props) {
   return (
     <Menu mode={props.mode}>
       <Menu.Item key="search">
-        <Icon type="search" style={{ fontSize: 22, marginBottom: '20px' }} />
+        <Icon
+          type="search"
+          style={{ textAlign: 'center', fontSize: 22, marginBottom: '20px' }}
+        />
       </Menu.Item>
 
       <Menu.Item key="history">

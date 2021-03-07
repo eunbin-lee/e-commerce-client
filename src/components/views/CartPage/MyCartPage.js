@@ -246,7 +246,7 @@ const MyCartPage = () => {
           margin: '20px 0',
         }}
       >
-        <Button onClick={() => onRemove()}>선택상품 삭제</Button>
+        <Button onClick={() => onRemove(id)}>선택상품 삭제</Button>
       </div>
 
       <div

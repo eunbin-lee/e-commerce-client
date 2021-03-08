@@ -111,7 +111,6 @@ const MyCartPage = () => {
       checkedID.splice(checkedID.indexOf(id), 1);
     }
   };
-  console.log(checkedID);
 
   //상품 삭제
   const onRemove = (id) => {
@@ -276,7 +275,7 @@ const MyCartPage = () => {
                   <Button
                     type="primary"
                     style={{ fontSize: '0.75rem' }}
-                    onClick={() => onRemove(checked.id)}
+                    onClick={() => onRemove(product.id)}
                   >
                     삭제
                   </Button>
@@ -312,7 +311,11 @@ const MyCartPage = () => {
             <RecommendProduct products={products} />
           </Modal>
         </div>
-        <Button type="primary" style={{ marginLeft: '5px' }}>
+        <Button
+          type="primary"
+          style={{ marginLeft: '5px' }}
+          onClick={() => onRemove(checked.id)}
+        >
           선택상품 삭제
         </Button>
       </div>

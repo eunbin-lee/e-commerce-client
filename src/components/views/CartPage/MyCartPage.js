@@ -55,6 +55,7 @@ const MyCartPage = () => {
   //상품 선택
   const [checked, setChecked] = useState(false);
   const [checkedID, setCheckedID] = useState([]);
+
   const onCheckAll = () => {
     setChecked(!checked);
     setMyCart(myCart.map((product) => ({ ...product, checked: !checked })));
@@ -73,17 +74,17 @@ const MyCartPage = () => {
     let index = myCart.findIndex((product) => product.id === id);
     if (!myCart[index].checked) {
       setCheckedID((checkedID) => checkedID.concat(id));
-      console.log(index);
     } else {
       checkedID.splice(checkedID.indexOf(id), 1);
     }
   };
-  console.log(checkedID);
 
   //상품 삭제
   const onRemove = (id) => {
-    console.log(id);
-    setMyCart(myCart.filter((product) => product.id !== id));
+    for (let i = 0; i < id.length; i++) {
+      console.log(id[i]);
+      // setMyCart(myCart.filter((product) => product.id !== id[i]));
+    }
   };
 
   //상품 수량

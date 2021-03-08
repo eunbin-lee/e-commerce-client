@@ -86,16 +86,16 @@ const MyCartPage = () => {
   };
 
   //상품 선택
-  const [checked, setChecked] = useState({
-    all: false,
-  });
+  const [checked, setChecked] = useState(false);
+  const [checkedID, setCheckedID] = useState([]);
   const onCheckAll = () => {
-    setChecked({
-      all: !checked.all,
-    });
-    setProducts(
-      products.map((product) => ({ ...product, checked: !product.checked })),
-    );
+    setChecked(!checked);
+    setProducts(products.map((product) => ({ ...product, checked: !checked })));
+    if (!checked) {
+      setCheckedID(products.map((product) => product.id));
+    } else {
+      setCheckedID([]);
+    }
   };
   const onCheckProduct = (id) => {
     setProducts(
@@ -103,10 +103,19 @@ const MyCartPage = () => {
         product.id === id ? { ...product, checked: !product.checked } : product,
       ),
     );
+    let index = products.findIndex((product) => product.id === id);
+    if (!products[index].checked) {
+      setCheckedID((checkedID) => checkedID.concat(id));
+      console.log(index);
+    } else {
+      checkedID.splice(checkedID.indexOf(id), 1);
+    }
   };
+  console.log(checkedID);
 
   //상품 삭제
   const onRemove = (id) => {
+    console.log(id);
     setProducts(products.filter((product) => product.id !== id));
   };
 
@@ -154,7 +163,7 @@ const MyCartPage = () => {
           <Checkbox
             style={{ width: '5%' }}
             onClick={onCheckAll}
-            checked={checked.all}
+            checked={checked}
           />
           <div style={{ width: '23%' }}>상품 정보</div>
           <div style={{ width: '12%' }}>카테고리</div>
@@ -267,7 +276,7 @@ const MyCartPage = () => {
                   <Button
                     type="primary"
                     style={{ fontSize: '0.75rem' }}
-                    onClick={() => onRemove(product.id)}
+                    onClick={() => onRemove(checked.id)}
                   >
                     삭제
                   </Button>

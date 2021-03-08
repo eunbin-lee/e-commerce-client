@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Icon, Input, Button, Checkbox, Typography, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
-import '../RegisterPage/RegisterPage.css';
+import '../../utils/sns.css';
 
 const { Title } = Typography;
 

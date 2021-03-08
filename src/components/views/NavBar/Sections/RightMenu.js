@@ -101,10 +101,12 @@ function RightMenu(props) {
           <Menu.Item key="mail">
             <Link to="/login">Signin</Link>
           </Menu.Item>
+
           <Menu.Item key="app">
             <Link to="/register">Signup</Link>
           </Menu.Item>
         </Menu>
+
         <SearchBar style={{}}>
           <SearchFeature refreshFunction={updateSearchTerms} />
         </SearchBar>
@@ -116,6 +118,10 @@ function RightMenu(props) {
         {/* <span>
           <SearchFeature refreshFunction={updateSearchTerms} />
         </span> */}
+        <Menu.Item key="userInfo">
+          <Link to="/user/info">My Page</Link>
+        </Menu.Item>
+
         <Menu.Item key="history">
           <Link to="/history">History</Link>
         </Menu.Item>

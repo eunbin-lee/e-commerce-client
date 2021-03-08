@@ -51,7 +51,7 @@ function WishlistPage() {
 
   return (
     <div style={{ width: '75%', margin: '3rem auto' }}>
-      <h2>Wishlist</h2>
+      <h2 style={{ fontWeight: 'bold' }}>위시리스트</h2>
 
       <ProductsList products={products} onRemove={onRemove} />
     </div>

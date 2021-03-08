@@ -53,16 +53,16 @@ const MyCartPage = () => {
   `;
 
   //상품 선택
-  const [checked, setChecked] = useState({
-    all: false,
-  });
+  const [checked, setChecked] = useState(false);
+  const [checkedID, setCheckedID] = useState([]);
   const onCheckAll = () => {
-    setChecked({
-      all: !checked.all,
-    });
-    setMyCart(
-      myCart.map((product) => ({ ...product, checked: !product.checked })),
-    );
+    setChecked(!checked);
+    setMyCart(myCart.map((product) => ({ ...product, checked: !checked })));
+    if (!checked) {
+      setCheckedID(myCart.map((product) => product.id));
+    } else {
+      setCheckedID([]);
+    }
   };
   const onCheckProduct = (id) => {
     setMyCart(
@@ -70,6 +70,20 @@ const MyCartPage = () => {
         product.id === id ? { ...product, checked: !product.checked } : product,
       ),
     );
+    let index = myCart.findIndex((product) => product.id === id);
+    if (!myCart[index].checked) {
+      setCheckedID((checkedID) => checkedID.concat(id));
+      console.log(index);
+    } else {
+      checkedID.splice(checkedID.indexOf(id), 1);
+    }
+  };
+  console.log(checkedID);
+
+  //상품 삭제
+  const onRemove = (id) => {
+    console.log(id);
+    setMyCart(myCart.filter((product) => product.id !== id));
   };
 
   //상품 수량
@@ -92,14 +106,9 @@ const MyCartPage = () => {
     );
   };
 
-  //상품 삭제
-  const onRemove = (id) => {
-    setMyCart(myCart.filter((product) => product.id !== id));
-  };
-
   return (
     <div style={{ width: '75%', margin: '3rem auto' }}>
-      <h2>Cart</h2>
+      <h2 style={{ fontWeight: 'bold' }}>장바구니</h2>
 
       <div
         style={{
@@ -110,7 +119,7 @@ const MyCartPage = () => {
         <Table>
           <Checkbox
             style={{ width: '7%' }}
-            checked={checked.All}
+            checked={checked}
             onClick={onCheckAll}
           />
           <div style={{ width: '48%' }}>상품 정보</div>
@@ -242,7 +251,7 @@ const MyCartPage = () => {
           margin: '20px 0',
         }}
       >
-        <Button onClick={() => onRemove()}>선택상품 삭제</Button>
+        <Button onClick={() => onRemove(checkedID)}>선택상품 삭제</Button>
       </div>
 
       <div

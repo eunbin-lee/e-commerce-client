@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { registerUser } from '../../../_actions/user_actions';
 import { useDispatch } from 'react-redux';
 import { Form, Input, Button } from 'antd';
-import './RegisterPage.css';
+import '../../utils/sns.css';
 
 const formItemLayout = {
   labelCol: {
@@ -262,9 +262,9 @@ function RegisterPage(props) {
                   onClick={handleSubmit}
                   type="primary"
                   disabled={isSubmitting}
-                  style={{ margin: '20px 0' }}
+                  style={{ margin: '10px 0' }}
                 >
-                  완료
+                  회원가입 완료
                 </Button>
               </Form.Item>
             </Form>

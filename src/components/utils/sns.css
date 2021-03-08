@@ -1,7 +1,7 @@
 .sns button {
   width: 165px;
   height: 32px;
-  background: url('../../images/bg_sns.png') no-repeat;
+  background: url('../images/bg_sns.png') no-repeat;
   margin: 0.15rem;
   padding-left: 45px;
   border: none;

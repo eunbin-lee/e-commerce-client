@@ -226,17 +226,6 @@ function LandingPage() {
       <VisualSlider />
 
       <div style={{ width: '75%', margin: '0 auto' }}>
-        {/* Search */}
-        {/* <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            margin: '1rem auto',
-          }}
-        >
-          <SearchFeature refreshFunction={updateSearchTerms} />
-        </div> */}
-
         {/* Recommendation Products */}
         <div style={{ margin: '8rem 0 4rem' }}>
           <h2 style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>

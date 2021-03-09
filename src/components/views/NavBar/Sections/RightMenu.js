@@ -62,7 +62,7 @@ function RightMenu(props) {
       limit: Limit,
     };
 
-    getProducts(variables);
+    // getProducts(variables);
   }, []);
 
   const getProducts = (variables) => {
@@ -91,7 +91,7 @@ function RightMenu(props) {
     setSkip(0);
     setSearchTerms(newSearchTerm);
 
-    getProducts(variables);
+    // getProducts(variables);
   };
 
   if (user.userData && !user.userData.isAuth) {
@@ -107,7 +107,7 @@ function RightMenu(props) {
           </Menu.Item>
         </Menu>
 
-        <SearchBar style={{}}>
+        <SearchBar>
           <SearchFeature refreshFunction={updateSearchTerms} />
         </SearchBar>
       </div>

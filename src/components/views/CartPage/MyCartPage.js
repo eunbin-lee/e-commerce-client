@@ -81,10 +81,9 @@ const MyCartPage = () => {
 
   //상품 삭제
   const onRemove = (id) => {
-    for (let i = 0; i < id.length; i++) {
-      console.log(id[i]);
-      // setMyCart(myCart.filter((product) => product.id !== id[i]));
-    }
+    console.log(id);
+
+    setMyCart(myCart.filter((product) => product.id !== id));
   };
 
   //상품 수량
@@ -129,7 +128,7 @@ const MyCartPage = () => {
           <div style={{ width: '15%' }}>배송비</div>
         </Table>
         {myCart.map((product) => (
-          <>
+          <div key={product.id}>
             <TableRow>
               {/* 체크박스 */}
               <Checkbox
@@ -240,7 +239,7 @@ const MyCartPage = () => {
                 )}
               </div>
             </TableRow>
-          </>
+          </div>
         ))}
       </div>
 
@@ -278,11 +277,13 @@ const MyCartPage = () => {
         >
           <div style={{ width: '32.6%' }}>
             <p>
-              {myCart.reduce(
-                (acc, cur) =>
-                  acc.price * acc.quantity +
-                  cur.price * (1 - cur.discountRate * 0.01) * cur.quantity,
-              )}
+              {myCart.length > 0
+                ? myCart.reduce(
+                    (acc, cur) =>
+                      acc.price * acc.quantity +
+                      cur.price * (1 - cur.discountRate * 0.01) * cur.quantity,
+                  )
+                : '0'}
               원
             </p>
             <p
@@ -292,24 +293,32 @@ const MyCartPage = () => {
                 color: '#adb5bd',
               }}
             >
-              {myCart.reduce((acc, cur) => acc.quantity + cur.quantity)}개
+              {myCart.length > 0
+                ? myCart.reduce((acc, cur) => acc.quantity + cur.quantity)
+                : '0'}
+              개
             </p>
           </div>
           <Icon type="plus" style={{ width: '1%' }} />
           <div style={{ width: '32.6%' }}>
-            {myCart.reduce((acc, cur) => acc.delivery + cur.delivery)}원
+            {myCart.length > 0
+              ? myCart.reduce((acc, cur) => acc.delivery + cur.delivery)
+              : '0'}
+            원
           </div>
           <Icon
             type="pause"
             style={{ width: '1%', transform: 'rotate(90deg)' }}
           />
           <div style={{ width: '32.6%' }}>
-            {myCart.reduce(
-              (acc, cur) =>
-                acc.price * acc.quantity +
-                cur.price * (1 - cur.discountRate * 0.01) * cur.quantity +
-                (acc.delivery + cur.delivery),
-            )}
+            {myCart.length > 0
+              ? myCart.reduce(
+                  (acc, cur) =>
+                    acc.price * acc.quantity +
+                    cur.price * (1 - cur.discountRate * 0.01) * cur.quantity +
+                    (acc.delivery + cur.delivery),
+                )
+              : '0'}
             원
           </div>
         </TableRow>

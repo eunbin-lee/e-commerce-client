@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Checkbox, Select, Icon, Modal } from 'antd';
-// import UploadProduct from './Sections/UploadProduct';
-// import UpdateProduct from './Sections/UpdateProduct';
 import RecommendProduct from './Sections/RecommendProduct';
 
 const MyCartPage = () => {

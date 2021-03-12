@@ -87,24 +87,30 @@ const MyCartPage = () => {
   };
 
   //상품 수량
-  const onIncrease = (id) => {
-    setMyCart(
-      myCart.map((product) =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product,
-      ),
-    );
-  };
-  const onDecrease = (id) => {
-    setMyCart(
-      myCart.map((product) =>
-        product.id === id
-          ? { ...product, quantity: product.quantity - 1 }
-          : product,
-      ),
-    );
-  };
+  const onIncrease = useCallback(
+    (id) => {
+      setMyCart(
+        myCart.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product,
+        ),
+      );
+    },
+    [myCart],
+  );
+  const onDecrease = useCallback(
+    (id) => {
+      setMyCart(
+        myCart.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity - 1 }
+            : product,
+        ),
+      );
+    },
+    [myCart],
+  );
 
   return (
     <div style={{ width: '75%', margin: '3rem auto' }}>

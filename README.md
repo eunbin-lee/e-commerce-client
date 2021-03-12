@@ -24,5 +24,4 @@
 <br>
 <br>
 
-client와 server 모두 확인하고 싶다면<br>
-[여기](https://github.com/eunbin-lee/E-commerce_site) 에서 확인 가능합니다.
+client와 server 모두 확인하고 싶으시다면 [여기](https://github.com/eunbin-lee/E-commerce_site)를 눌려주세요!

@@ -11,7 +11,7 @@
 <br>
 <br>
 
-### 📂 설치 및 사용법
+## 📂 설치 및 사용법
 #### 권장 브라우저
 <img src="https://img.shields.io/badge/GoogleChrome-4285F4?style=flat-square&logo=GoogleChrome&logoColor=white"/>
 
@@ -32,7 +32,7 @@ npm start
 <br>
 <br>
 
-### 👩🏻‍💻 기술 스택
+## 👩🏻‍💻 기술 스택
 #### 프론트엔드
 ```
 - HTML5
@@ -65,13 +65,13 @@ npm start
 <br>
 <br>
 
-### 📆 프로젝트 기간
+## 📆 프로젝트 기간
 2020년 2월 22일 ~ 2020년 3월 26일 (총 5주)
 
 <br>
 <br>
 
-### 📌 구현 페이지 / 기능
+## 📌 구현 페이지 / 기능
 #### 회원가입 페이지
 - 회원가입 유효성 검사
 - 비밀번호 암호화
@@ -126,7 +126,7 @@ npm start
 <br>
 <br>
 
-### 🤼‍♂️ 참여자
+## 🤼‍♂️ 참여자
 [박정훈 (Back-end, Front-end)](https://github.com/Jetty2020) <br>
 [이은빈 (Front-end, UI Design)](https://github.com/eunbin-lee) <br>
 [조혜송 (Back-end)](https://github.com/spaciouskitchen)

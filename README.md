@@ -14,12 +14,8 @@
 #### 권장 브라우저
 <img src="https://img.shields.io/badge/GoogleChrome-4285F4?style=flat-square&logo=GoogleChrome&logoColor=white"/>
 
-<br>
-
 #### 권장 버전
 <img src="https://img.shields.io/badge/npm-6.14.7-green?style=flat-square" /> <img src="https://img.shields.io/badge/node-14.7.0-orange?style=flat-square" />
-
-<br>
 
 #### 설치
 ```
